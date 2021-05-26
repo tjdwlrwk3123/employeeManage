@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--<bean id="loginSuccessHandler" class="com.yang.empl.security.LoginSuccessHandler"/>-->
+<bean id="passwordEncoding" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+	<sec:http>
+		<sec:intercept-url pattern="/member/**" access="hasRole('ROLE_MEMBER')"/>
+		<sec:intercept-url pattern="/partner/**" access="hasRole('ROLE_PARTNER')"/>
+		<sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+		<sec:intercept-url pattern="/**" access="permitAll"/>
+		<sec:form-login login-page="/loginCheck" authentication-success-handler-ref="loginSuccessHandler"/>
+		<sec:logout logout-url="/logout" invalidate-session="true" logout-success-url="/"/>
+		<sec:form-login/>
+	</sec:http>
+	<sec:authentication-manager>
+		<sec:authentication-provider>
+			<sec:jdbc-user-service data-source-ref="datasource"/>
+			<sec:password-encoder ref="passwordEncoding"/>
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+</beans>
