@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2021-05-26 16:21:55</creation_date>
-			<updated_date>2021-05-26 17:08:22</updated_date>
+			<updated_date>2021-05-27 17:06:56</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -202,7 +202,7 @@
 		</word>
 		<word>
 			<id>2</id>
-			<length>null</length>
+			<length>20</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -214,7 +214,7 @@
 			<description></description>
 			<logical_name>연락처</logical_name>
 			<physical_name>contactAdress</physical_name>
-			<type>decimal</type>
+			<type>varchar(n)</type>
 		</word>
 		<word>
 			<id>3</id>
@@ -1090,7 +1090,7 @@
 			<connections>
 				<relation>
 					<id>2</id>
-					<source>1</source>
+					<source>2</source>
 					<target>5</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -1134,7 +1134,7 @@
 				</relation>
 				<relation>
 					<id>4</id>
-					<source>2</source>
+					<source>0</source>
 					<target>5</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -1156,7 +1156,7 @@
 				</relation>
 				<relation>
 					<id>5</id>
-					<source>0</source>
+					<source>1</source>
 					<target>5</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -1220,7 +1220,7 @@
 				<normal_column>
 					<id>14</id>
 					<referenced_column>0</referenced_column>
-					<relation>5</relation>
+					<relation>4</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1321,7 +1321,7 @@
 				<normal_column>
 					<id>17</id>
 					<referenced_column>2</referenced_column>
-					<relation>2</relation>
+					<relation>5</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1421,7 +1421,7 @@
 				<normal_column>
 					<id>20</id>
 					<referenced_column>4</referenced_column>
-					<relation>4</relation>
+					<relation>2</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1459,7 +1459,7 @@
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>decimal</type>
+					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
