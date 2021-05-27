@@ -5,14 +5,13 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<!--<bean id="loginSuccessHandler" class="com.yang.empl.security.LoginSuccessHandler"/>-->
 <bean id="passwordEncoding" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	<sec:http use-expressions="true">
 		<sec:intercept-url pattern="/login/**" access="permitAll"/>
 		<sec:intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
 		<sec:intercept-url pattern="/**" access="hasAnyRole('USER','ADMIN')"/>
 		<sec:form-login login-page="/login/loginCheck"
-		default-target-url="/home"
+		default-target-url="/"
 		authentication-failure-url="/login/loginForm?error"
 		username-parameter="id" password-parameter="password"/>
 		<sec:logout logout-url="/logout" invalidate-session="true" logout-success-url="/"/>

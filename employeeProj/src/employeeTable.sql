@@ -1,6 +1,7 @@
 
 /* Drop Tables */
 
+DROP TABLE authorities CASCADE CONSTRAINTS;
 DROP TABLE imgTable CASCADE CONSTRAINTS;
 DROP TABLE emplList CASCADE CONSTRAINTS;
 DROP TABLE position CASCADE CONSTRAINTS;
@@ -12,6 +13,14 @@ DROP TABLE userInfo CASCADE CONSTRAINTS;
 
 
 /* Create Tables */
+
+CREATE TABLE authorities
+(
+	authority varchar2(20) NOT NULL,
+	userId varchar2(50) NOT NULL,
+	PRIMARY KEY (authority)
+);
+
 
 CREATE TABLE department
 (
@@ -31,7 +40,7 @@ CREATE TABLE emplList
 	empBirth date NOT NULL,
 	solarlunar number,
 	regionNum number NOT NULL,
-	contactAdress number NOT NULL,
+	contactAdress varchar2(20) NOT NULL,
 	bonus number,
 	PRIMARY KEY (empNum)
 );
@@ -68,6 +77,7 @@ CREATE TABLE userInfo
 (
 	userId varchar2(50) NOT NULL,
 	userPassword varchar2(50) NOT NULL,
+	enabled number,
 	PRIMARY KEY (userId)
 );
 
@@ -102,6 +112,12 @@ ALTER TABLE emplList
 ALTER TABLE emplList
 	ADD FOREIGN KEY (regionNum)
 	REFERENCES region (regionNum)
+;
+
+
+ALTER TABLE authorities
+	ADD FOREIGN KEY (userId)
+	REFERENCES userInfo (userId)
 ;
 
 
