@@ -3,12 +3,10 @@ package com.yang.empl.vo;
 public class PositionVo {
 	private int ppNum;
 	private String ppName;
-	private int basepay;
-	public PositionVo(int ppNum, String ppName, int basepay) {
+	public PositionVo(int ppNum, String ppName) {
 		super();
 		this.ppNum = ppNum;
 		this.ppName = ppName;
-		this.basepay = basepay;
 	}
 	public int getPpNum() {
 		return ppNum;
@@ -21,11 +19,5 @@ public class PositionVo {
 	}
 	public void setPpName(String ppName) {
 		this.ppName = ppName;
-	}
-	public int getBasepay() {
-		return basepay;
-	}
-	public void setBasepay(int basepay) {
-		this.basepay = basepay;
 	}
 }

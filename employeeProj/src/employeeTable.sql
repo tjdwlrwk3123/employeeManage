@@ -3,9 +3,10 @@
 
 DROP TABLE authorities CASCADE CONSTRAINTS;
 DROP TABLE imgTable CASCADE CONSTRAINTS;
-DROP TABLE emplList CASCADE CONSTRAINTS;
-DROP TABLE position CASCADE CONSTRAINTS;
+DROP TABLE empList CASCADE CONSTRAINTS;
+DROP TABLE payfor CASCADE CONSTRAINTS;
 DROP TABLE department CASCADE CONSTRAINTS;
+DROP TABLE position CASCADE CONSTRAINTS;
 DROP TABLE region CASCADE CONSTRAINTS;
 DROP TABLE userInfo CASCADE CONSTRAINTS;
 
@@ -30,7 +31,7 @@ CREATE TABLE department
 );
 
 
-CREATE TABLE emplList
+CREATE TABLE empList
 (
 	empNum number NOT NULL,
 	userId varchar2(50) NOT NULL,
@@ -41,6 +42,7 @@ CREATE TABLE emplList
 	solarlunar number,
 	regionNum number NOT NULL,
 	contactAdress varchar2(20) NOT NULL,
+	basepay number NOT NULL,
 	bonus number,
 	PRIMARY KEY (empNum)
 );
@@ -55,12 +57,20 @@ CREATE TABLE imgTable
 );
 
 
+CREATE TABLE payfor
+(
+	payNum number NOT NULL,
+	deptNum number NOT NULL,
+	ppNum number NOT NULL,
+	basepay number NOT NULL,
+	PRIMARY KEY (payNum)
+);
+
+
 CREATE TABLE position
 (
 	ppNum number NOT NULL,
-	deptNum number NOT NULL,
 	ppName varchar2(20) NOT NULL,
-	basepay number,
 	PRIMARY KEY (ppNum)
 );
 
@@ -85,13 +95,13 @@ CREATE TABLE userInfo
 
 /* Create Foreign Keys */
 
-ALTER TABLE emplList
+ALTER TABLE empList
 	ADD FOREIGN KEY (deptNum)
 	REFERENCES department (deptNum)
 ;
 
 
-ALTER TABLE position
+ALTER TABLE payfor
 	ADD FOREIGN KEY (deptNum)
 	REFERENCES department (deptNum)
 ;
@@ -99,17 +109,23 @@ ALTER TABLE position
 
 ALTER TABLE imgTable
 	ADD FOREIGN KEY (empNum)
-	REFERENCES emplList (empNum)
+	REFERENCES empList (empNum)
 ;
 
 
-ALTER TABLE emplList
+ALTER TABLE empList
 	ADD FOREIGN KEY (ppNum)
 	REFERENCES position (ppNum)
 ;
 
 
-ALTER TABLE emplList
+ALTER TABLE payfor
+	ADD FOREIGN KEY (ppNum)
+	REFERENCES position (ppNum)
+;
+
+
+ALTER TABLE empList
 	ADD FOREIGN KEY (regionNum)
 	REFERENCES region (regionNum)
 ;
@@ -121,7 +137,7 @@ ALTER TABLE authorities
 ;
 
 
-ALTER TABLE emplList
+ALTER TABLE empList
 	ADD FOREIGN KEY (userId)
 	REFERENCES userInfo (userId)
 ;
