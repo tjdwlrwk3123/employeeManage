@@ -12,6 +12,7 @@
 		<typeAlias type="com.yang.empl.vo.DepartmentVo" alias="Department"/>
 		<typeAlias type="com.yang.empl.vo.RegionVo" alias="Region"/>
 		<typeAlias type="com.yang.empl.vo.PositionVo" alias="Position"/>
+		<typeAlias type="com.yang.empl.vo.PayforVo" alias="Payfor"/>
 	</typeAliases>
 	
 	<mappers>

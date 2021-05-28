@@ -48,19 +48,19 @@
 			</c:forEach>
 		</select>
 		<div>부서:</div>
-		<select name="department" class="form-control">
+		<select id="dept" name="department" class="form-control">
 			<c:forEach var="dept" items="${deptList }"> 
 				<option value="${dept.deptNum }">${dept.deptName }</option>
 			</c:forEach>
 		</select>
 		<div>직위:</div>
-		<select name="position" class="form-control">
+		<select id="posi" name="position" class="form-control">
 			<c:forEach var="posi" items="${posiList }">
 				<option value="${posi.ppNum }">${posi.ppName }</option>
 			</c:forEach>
 		</select>
 		<div>기본급:</div>
-		<input type="text" name="basepay" value="">
+		<input type="text" id="basepay" name="basepay" value="2000000">
 		<div>수당:</div>
 		<input type="text" name="bonus" placeholder="수당">
 	</div>
@@ -70,6 +70,24 @@
 </form>
 </body>
 <script type="text/javascript">
+$(document).ready(function() {
 	
+	$('#dept').on('change',function(){
+		$.getJSON('${cp}/getBasepay?dept='+$("#dept").val()+"&posi="+$("#posi").val(),function(data){
+			var basepay=data.basepay;
+			
+			$("#basepay").val(basepay);
+		});
+	});
+	
+	$('#posi').on('change',function(){
+		$.getJSON('${cp}/getBasepay?dept='+$("#dept").val()+"&posi="+$("#posi").val(),function(data){
+			var basepay=data.basepay;
+			
+			$("#basepay").val(basepay);
+		});
+	});
+	
+});
 </script>
 </html>

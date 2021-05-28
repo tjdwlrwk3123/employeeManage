@@ -13,4 +13,7 @@
 	<select id="getRegion" resultType="Region">
 		select * from region
 	</select>
+	<select id="getBasepay" resultType="Payfor" parameterType="hashmap">
+		select * from payfor where deptNum=#{dept} and ppNum=#{posi}
+	</select>
 </mapper>
