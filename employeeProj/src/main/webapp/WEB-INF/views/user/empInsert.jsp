@@ -8,6 +8,9 @@
 <title>Insert title here</title>
 </head>
 <script type="text/javascript" src="/empl/resources/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style>
 
@@ -35,10 +38,10 @@
 		<div>이름:</div>
 		<input type="text" name="name" placeholder="이름(30자 이내)">
 		<div>생년월일:</div>
-		<input type="text" name="birth" placeholder="생년월일(YYYYMMDD)">
+		<input type="text" name="birth" id="dp" readonly="readonly" placeholder="생년월일(YYYY-MM-DD)">
 		<div>양/음력:</div>
-		<input type="radio" name="sl" value="solar">양력
-		<input type="radio" name="sl" value="lunar">음력
+		<input type="radio" name="sollun" value="solar">양력
+		<input type="radio" name="sollun" value="lunar">음력
 		<div>전화번호:</div>
 		<input type="text" name="phone" placeholder="전화번호(-는 생략)">
 		<div>지역:</div>
@@ -47,6 +50,8 @@
 				<option value="${reg.regionNum }">${reg.regionName }</option>
 			</c:forEach>
 		</select>
+		<div>입사일:</div>
+		<input type="text" id="dp2" name="joining" readonly="readonly">
 		<div>부서:</div>
 		<select id="dept" name="department" class="form-control">
 			<c:forEach var="dept" items="${deptList }"> 
@@ -88,6 +93,31 @@ $(document).ready(function() {
 		});
 	});
 	
+	$('#dp').datepicker({
+		dateFormat : 'yy-mm-dd',
+		dayNamesMin:['일','월','화','수','목','금','토'],
+		monthNamesShort:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		yearSuffix:"년",
+		minDate : '-100y',
+		yearRange : 'c-100:c+10',
+		showMonthAfterYear:true,
+		showAnim : 'toggle',
+		changeMonth : 'true',
+		changeYear : 'true'
+	});
+	
+	$('#dp2').datepicker({
+		dateFormat : 'yy-mm-dd',
+		dayNamesMin:['일','월','화','수','목','금','토'],
+		monthNamesShort:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		yearSuffix:"년",
+		minDate : '-100y',
+		yearRange : 'c-100:c+3',
+		showMonthAfterYear:true,
+		showAnim : 'toggle',
+		changeMonth : 'true',
+		changeYear : 'true'
+	});
 });
 </script>
 </html>

@@ -14,8 +14,9 @@ public class EmpListVo {
 	private String contactAdress;
 	private int basepay;
 	private int bonus;
+	private int joindate;
 	public EmpListVo(int empNum, String userId, String empName, int ppNum, int deptNum, Date empBirth, int solarlunar,
-			int regionNum, String contactAdress, int basepay, int bonus) {
+			int regionNum, String contactAdress, int basepay, int bonus, int joindate) {
 		super();
 		this.empNum = empNum;
 		this.userId = userId;
@@ -28,6 +29,7 @@ public class EmpListVo {
 		this.contactAdress = contactAdress;
 		this.basepay = basepay;
 		this.bonus = bonus;
+		this.joindate = joindate;
 	}
 	public int getEmpNum() {
 		return empNum;
@@ -94,5 +96,11 @@ public class EmpListVo {
 	}
 	public void setBonus(int bonus) {
 		this.bonus = bonus;
+	}
+	public int getJoindate() {
+		return joindate;
+	}
+	public void setJoindate(int joindate) {
+		this.joindate = joindate;
 	}
 }

@@ -44,6 +44,7 @@ CREATE TABLE empList
 	contactAdress varchar2(20) NOT NULL,
 	basepay number NOT NULL,
 	bonus number,
+	joindate number NOT NULL,
 	PRIMARY KEY (empNum)
 );
 
