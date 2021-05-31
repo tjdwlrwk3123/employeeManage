@@ -13,7 +13,7 @@ h1 {text-align: center;}
 <body>
 <h1>사원관리 페이지</h1>
 <div id="joindiv">
-<a href="join"><img id="joinEmp" src="${cp }/resources/imgFolder/join.png"></a>
+<a href="list"><img id="joinEmp" src="${cp }/resources/imgFolder/join.png"></a>
 </div>
 </body>
 </html>

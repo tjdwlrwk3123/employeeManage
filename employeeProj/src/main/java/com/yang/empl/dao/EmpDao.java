@@ -31,4 +31,13 @@ public class EmpDao {
 	public PayforVo getBasepay(HashMap<String, Object> map) {
 		return sqlSession.selectOne(NAMESPACE+".getBasepay", map);
 	}
+	public int getIdSequence() {
+		return sqlSession.selectOne(NAMESPACE+".getIdSequence");
+	}
+	public int userInsert(HashMap<String, Object> map) {
+		return sqlSession.insert(NAMESPACE+".userInsert",map);
+	}
+	public int empInsert(HashMap<String, Object> map) {
+		return sqlSession.insert(NAMESPACE+".empInsert", map);
+	}
 }

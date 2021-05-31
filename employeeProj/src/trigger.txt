@@ -1,0 +1,6 @@
+create or replace trigger auth_trigger
+after insert on userinfo
+for each row
+begin
+insert into authorities values('MEMBER',:new.userid);
+end auth_trigger;

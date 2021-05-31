@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2021-05-26 16:21:55</creation_date>
-			<updated_date>2021-05-30 20:49:21</updated_date>
+			<updated_date>2021-05-31 21:22:07</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -1386,7 +1386,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>2</word_id>
+					<word_id>1</word_id>
 					<id>17</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1839,7 +1839,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>1</word_id>
+					<word_id>2</word_id>
 					<id>27</id>
 					<description></description>
 					<unique_key_name></unique_key_name>

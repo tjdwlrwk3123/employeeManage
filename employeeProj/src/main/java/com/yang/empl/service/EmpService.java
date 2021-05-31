@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yang.empl.dao.EmpDao;
 import com.yang.empl.vo.DepartmentVo;
@@ -29,5 +30,14 @@ public class EmpService {
 	}
 	public PayforVo getBasepay(HashMap<String, Object> map) {
 		return edao.getBasepay(map);
+	}
+	public int getIdSequence() {
+		return edao.getIdSequence();
+	}
+	@Transactional(rollbackFor = {Exception.class})
+	public int insertTransaction(HashMap<String, Object> userMap,HashMap<String, Object> empMap) {
+		edao.userInsert(userMap);
+		edao.empInsert(empMap);
+		return 1;
 	}
 }

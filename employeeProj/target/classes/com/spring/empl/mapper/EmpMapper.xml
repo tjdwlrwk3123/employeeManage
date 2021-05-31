@@ -16,4 +16,15 @@
 	<select id="getBasepay" resultType="Payfor" parameterType="hashmap">
 		select * from payfor where deptNum=#{dept} and ppNum=#{posi}
 	</select>
+	<select id="getIdSequence" resultType="int">
+		select idnum.nextval from dual
+	</select>
+	<insert id="userInsert" parameterType="hashmap">
+		insert into userinfo values(#{userid},#{userpassword},0)
+	</insert>
+	<insert id="empInsert" parameterType="hashmap">
+		insert into emplist values((select nvl(max(empnum)+1,0) from emplist),#{userid},
+		#{empname},#{ppnum},#{deptnum},#{empbirth},#{sollun},#{regionnum},#{phonenum},
+		#{basepay},#{bonus},#{joinday})
+	</insert>
 </mapper>

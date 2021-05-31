@@ -33,17 +33,18 @@
 </div>
 <br>
 <br>
-<form action="empInsert">
+<form action="empInsert" method="post" id="empInsert">
 	<div id="form">
 		<div>이름:</div>
-		<input type="text" name="name" placeholder="이름(30자 이내)">
+		<input type="text" name="name" id="name" placeholder="이름(30자 이내)">
 		<div>생년월일:</div>
 		<input type="text" name="birth" id="dp" readonly="readonly" placeholder="생년월일(YYYY-MM-DD)">
 		<div>양/음력:</div>
-		<input type="radio" name="sollun" value="solar">양력
-		<input type="radio" name="sollun" value="lunar">음력
-		<div>전화번호:</div>
-		<input type="text" name="phone" placeholder="전화번호(-는 생략)">
+		<input type="radio" name="sollun" value="1">양력
+		<input type="radio" name="sollun" value="2">음력
+		<label>(체크하지 않을 시 양력으로 처리합니다.)</label>
+		<div>연락처:</div>
+		<input type="text" name="phone" id="phone" placeholder="전화번호(-는 생략)">
 		<div>지역:</div>
 		<select name="region" class="form-control">
 			<c:forEach var="reg" items="${regList }">
@@ -117,6 +118,46 @@ $(document).ready(function() {
 		showAnim : 'toggle',
 		changeMonth : 'true',
 		changeYear : 'true'
+	});
+	
+	
+	var check_num = /^[0-9]*$/; // 숫자 
+	var check_eng = /[a-zA-Z]/; // 문자 
+	var check_spc = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"]/gi;
+	var check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
+
+	$('#name').keyup(function(){
+		if(check_spc.test($('#name').val())){
+			alert("특수문자는 입력할 수 없습니다.");
+		}
+	});
+	
+	$('#phone').keyup(function(){
+		if(!check_num.test($('#phone').val())){
+			alert("숫자만 입력해주세요");
+		}
+	});
+	
+	
+	$('#empInsert').submit(function(){
+		if($('#name').val()=="" || check_spc.test($('#name').val())){
+			alert("올바르게 이름을 입력해주세요");
+			return false;
+		}else if($('#phone').val()=="" || !check_num.test($('#phone').val())){
+			alert("올바르게 연락처를 입력해주세요");
+			return false;
+		}else if($('#dp1').val()==""){
+			alert("생년월일을 입력해주세요");
+			return false;
+		}else if($('#dp2').val()==""){
+			alert("입사일을 입력해주세요");
+			return false;
+		}else if($('#basepay').val()==""){
+			alert("기본급을 입력해주세요");
+			return false;
+		}else{
+			return true;
+		}
 	});
 });
 </script>
