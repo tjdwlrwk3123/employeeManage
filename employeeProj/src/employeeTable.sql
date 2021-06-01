@@ -17,9 +17,10 @@ DROP TABLE userInfo CASCADE CONSTRAINTS;
 
 CREATE TABLE authorities
 (
-	authority varchar2(20) NOT NULL,
+	authNum number NOT NULL,
 	userId varchar2(50) NOT NULL,
-	PRIMARY KEY (authority)
+	authority varchar2(20) NOT NULL,
+	PRIMARY KEY (authNum)
 );
 
 

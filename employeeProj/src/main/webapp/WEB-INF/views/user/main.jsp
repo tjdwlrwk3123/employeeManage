@@ -24,10 +24,11 @@
 <br>
 <div id="manageList">
 	<ul>
-		<li><button class="btn btn-info btn-block">직원관리</button></li>
-		<li><button class="btn btn-default btn-block">지역관리</button></li>
-		<li><button class="btn btn-default btn-block">직위관리</button></li>
-		<li><button class="btn btn-default btn-block">부서관리</button></li>
+		<li><button class="btn btn-info btn-block" onclick="location.href='list'">직원관리</button></li>
+		<li><button class="btn btn-default btn-block" onclick="location.href='region'">지역관리</button></li>
+		<li><button class="btn btn-default btn-block" onclick="location.href='position'">직위관리</button></li>
+		<li><button class="btn btn-default btn-block" onclick="location.href='department'">부서관리</button></li>
+		<li><button class="btn btn-default btn-block" onclick="location.href='basepay'">기본급관리</button></li>
 		<li><button class="btn btn-danger btn-block">로그아웃</button></li>
 	</ul>
 </div>
@@ -37,13 +38,15 @@
 	<table class="table">
 		<tr>
 			<th>번호</th>
+			<th>아이디</th>
 			<th>이름</th>
 			<th>생년월일</th>
 			<th>양/음력</th>
 			<th>전화번호</th>
 			<th>지역명</th>
-			<th>직위명</th>
 			<th>부서명</th>
+			<th>직위명</th>
+			<th>입사일</th>
 			<th>기본급</th>
 			<th>수당</th>
 			<th>급여</th>
@@ -51,9 +54,31 @@
 			<th class="warning">수정</th>
 			<th class="danger">삭제</th>
 		</tr>
-		<c:forEach items="">
+		<c:forEach var="emp" items="${emplist }" varStatus="status">
 		<tr>
-			<td></td>
+			<td>${emp.empNum }</td>
+			<td>${emp.userId }</td>
+			<td>${emp.empName }<button>사진</button></td>
+			<td>${emp.empBirth }</td>
+			<td>
+				<c:choose>
+					<c:when test="${emp.solarlunar == 1 }">양력</c:when>
+					<c:otherwise>음력</c:otherwise>
+				</c:choose>
+			</td>
+			<td>${emp.contactAdress }</td>
+			<td>${regiName[status.index] }</td>
+			<td>${deptName[status.index] }</td>
+			<td>${ppName[status.index] }</td>
+			<td>${emp.joinday }</td>
+			<td>${emp.basepay }</td>
+			<td>${emp.bonus }</td>
+			<td>${emp.basepay + emp.bonus }</td>
+			<td>
+			<button>등록</button>
+			</td>
+			<td><a href="">수정</a></td>
+			<td><a href="">삭제</a></td>
 		</tr>
 		</c:forEach>
 	</table>

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yang.empl.dao.EmpDao;
 import com.yang.empl.vo.DepartmentVo;
+import com.yang.empl.vo.EmpListVo;
 import com.yang.empl.vo.PayforVo;
 import com.yang.empl.vo.PositionVo;
 import com.yang.empl.vo.RegionVo;
@@ -19,6 +20,16 @@ public class EmpService {
 	@Autowired
 	private EmpDao edao;
 	
+	public DepartmentVo getDepartmentOne(HashMap<String, Object> map){
+		return edao.getDepartmentOne(map);
+	}
+	public PositionVo getPositionOne(HashMap<String, Object> map){
+		return edao.getPositionOne(map);
+	}
+	public RegionVo getRegionOne(HashMap<String, Object> map){
+		return edao.getRegionOne(map);
+	}
+	
 	public List<DepartmentVo> getDepartment(){
 		return edao.getDepartment();
 	}
@@ -28,6 +39,7 @@ public class EmpService {
 	public List<RegionVo> getRegion(){
 		return edao.getRegion();
 	}
+	
 	public PayforVo getBasepay(HashMap<String, Object> map) {
 		return edao.getBasepay(map);
 	}
@@ -39,5 +51,8 @@ public class EmpService {
 		edao.userInsert(userMap);
 		edao.empInsert(empMap);
 		return 1;
+	}
+	public List<EmpListVo> getEmployee(){
+		return edao.getEmployee();
 	}
 }

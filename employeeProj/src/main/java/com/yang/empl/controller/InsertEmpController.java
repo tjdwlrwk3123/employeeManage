@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yang.empl.service.EmpService;
 import com.yang.empl.vo.DepartmentVo;
@@ -30,6 +33,7 @@ public class InsertEmpController {
 	
 	@RequestMapping(method = RequestMethod.GET, value="insertForm")
 	public String goInsertForm(Model model) {
+		//빈 해시맵 생성
 		
 		List<DepartmentVo> deptList=eService.getDepartment();
 		List<RegionVo> regList=eService.getRegion();
@@ -60,7 +64,8 @@ public class InsertEmpController {
 	public String empInsert(String name, Date birth, 
 			@RequestParam(defaultValue = "1") int sollun, String phone,
 			String region, String department, String position, int basepay, 
-			@RequestParam(defaultValue = "0") int bonus, Date joining) {
+			@RequestParam(defaultValue = "0") int bonus, Date joining,
+			HttpServletRequest req, RedirectAttributes ra) {
 		
 		//아이디 만들어내기 (부서번호+직위번호+0+순차적인 시퀀스)
 		
@@ -117,7 +122,10 @@ public class InsertEmpController {
 		if(inserting==1) {
 			return "redirect:/list";
 		}else {
-			return "/login/denied";
+			ra.addFlashAttribute("failed", "failed");
+			//이전페이지로 가기
+			String referer=req.getHeader("Referer");
+			return "redirect:"+referer;
 		}
 	}
 }

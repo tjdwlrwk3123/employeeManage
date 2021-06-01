@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.yang.empl.vo.DepartmentVo;
+import com.yang.empl.vo.EmpListVo;
 import com.yang.empl.vo.PayforVo;
 import com.yang.empl.vo.PositionVo;
 import com.yang.empl.vo.RegionVo;
@@ -19,6 +20,16 @@ public class EmpDao {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.spring.empl.mapper.EmpMapper";
 	
+	public DepartmentVo getDepartmentOne(HashMap<String, Object> map){
+		return sqlSession.selectOne(NAMESPACE+".getDepartmentOne",map);
+	}
+	public PositionVo getPositionOne(HashMap<String, Object> map){
+		return sqlSession.selectOne(NAMESPACE+".getPositionOne",map);
+	}
+	public RegionVo getRegionOne(HashMap<String, Object> map){
+		return sqlSession.selectOne(NAMESPACE+".getRegionOne",map);
+	}
+	
 	public List<DepartmentVo> getDepartment(){
 		return sqlSession.selectList(NAMESPACE+".getDepartment");
 	}
@@ -28,6 +39,7 @@ public class EmpDao {
 	public List<RegionVo> getRegion(){
 		return sqlSession.selectList(NAMESPACE+".getRegion");
 	}
+	
 	public PayforVo getBasepay(HashMap<String, Object> map) {
 		return sqlSession.selectOne(NAMESPACE+".getBasepay", map);
 	}
@@ -39,5 +51,8 @@ public class EmpDao {
 	}
 	public int empInsert(HashMap<String, Object> map) {
 		return sqlSession.insert(NAMESPACE+".empInsert", map);
+	}
+	public List<EmpListVo> getEmployee(){
+		return sqlSession.selectList(NAMESPACE+".getEmployee");
 	}
 }

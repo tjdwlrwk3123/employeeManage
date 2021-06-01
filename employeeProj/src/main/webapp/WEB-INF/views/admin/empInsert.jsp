@@ -28,6 +28,7 @@
 		<li><button class="btn btn-default btn-block">지역관리</button></li>
 		<li><button class="btn btn-default btn-block">직위관리</button></li>
 		<li><button class="btn btn-default btn-block">부서관리</button></li>
+		<li><button class="btn btn-default btn-block">기본급관리</button></li>
 		<li><button class="btn btn-danger btn-block">로그아웃</button></li>
 	</ul>
 </div>
@@ -68,15 +69,20 @@
 		<div>기본급:</div>
 		<input type="text" id="basepay" name="basepay" value="2000000">
 		<div>수당:</div>
-		<input type="text" name="bonus" placeholder="수당">
+		<input type="text" name="bonus" id="bonus" placeholder="수당">
 	</div>
 	<div id="submit">
 		<button class="btn btn-default">추가</button>
 	</div>
 </form>
+<input type="hidden" id="result" value="${failed }">
 </body>
 <script type="text/javascript">
 $(document).ready(function() {
+	
+	if($("#result").val()=='failed'){
+		alert('직원 생성에 실패했습니다.');
+	}
 	
 	$('#dept').on('change',function(){
 		$.getJSON('${cp}/getBasepay?dept='+$("#dept").val()+"&posi="+$("#posi").val(),function(data){
@@ -138,6 +144,11 @@ $(document).ready(function() {
 		}
 	});
 	
+	$('#bonus').keyup(function(){
+		if(!check_num.test($('#bonus').val())){
+			alert("숫자만 입력해주세요");
+		}
+	});
 	
 	$('#empInsert').submit(function(){
 		if($('#name').val()=="" || check_spc.test($('#name').val())){
@@ -154,6 +165,9 @@ $(document).ready(function() {
 			return false;
 		}else if($('#basepay').val()==""){
 			alert("기본급을 입력해주세요");
+			return false;
+		}else if(!check_num.test($('#bonus').val())){
+			alert("수당은 숫자만 입력해주세요");
 			return false;
 		}else{
 			return true;
