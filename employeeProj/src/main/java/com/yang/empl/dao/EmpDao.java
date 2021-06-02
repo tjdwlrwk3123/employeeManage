@@ -19,23 +19,7 @@ public class EmpDao {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.spring.empl.mapper.EmpMapper";
-	
-	public DepartmentVo getDepartmentOne(HashMap<String, Object> map){
-		return sqlSession.selectOne(NAMESPACE+".getDepartmentOne",map);
-	}
-	public PositionVo getPositionOne(HashMap<String, Object> map){
-		return sqlSession.selectOne(NAMESPACE+".getPositionOne",map);
-	}
-	
-	
-	public List<DepartmentVo> getDepartment(){
-		return sqlSession.selectList(NAMESPACE+".getDepartment");
-	}
-	public List<PositionVo> getPosition(){
-		return sqlSession.selectList(NAMESPACE+".getPosition");
-	}
-	
-	
+
 	public PayforVo getBasepay(HashMap<String, Object> map) {
 		return sqlSession.selectOne(NAMESPACE+".getBasepay", map);
 	}

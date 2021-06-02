@@ -20,22 +20,6 @@ public class EmpService {
 	@Autowired
 	private EmpDao edao;
 	
-	public DepartmentVo getDepartmentOne(HashMap<String, Object> map){
-		return edao.getDepartmentOne(map);
-	}
-	public PositionVo getPositionOne(HashMap<String, Object> map){
-		return edao.getPositionOne(map);
-	}
-	
-	
-	public List<DepartmentVo> getDepartment(){
-		return edao.getDepartment();
-	}
-	public List<PositionVo> getPosition(){
-		return edao.getPosition();
-	}
-	
-	
 	public PayforVo getBasepay(HashMap<String, Object> map) {
 		return edao.getBasepay(map);
 	}

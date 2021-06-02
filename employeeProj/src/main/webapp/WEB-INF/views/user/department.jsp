@@ -21,9 +21,9 @@
 <div id="manageList">
 	<ul>
 		<li><button class="btn btn-default btn-block" onclick="location.href='list'">직원관리</button></li>
-		<li><button class="btn btn-info btn-block" onclick="location.href='region'">지역관리</button></li>
+		<li><button class="btn btn-default btn-block" onclick="location.href='region'">지역관리</button></li>
 		<li><button class="btn btn-default btn-block" onclick="location.href='position'">직위관리</button></li>
-		<li><button class="btn btn-default btn-block" onclick="location.href='department'">부서관리</button></li>
+		<li><button class="btn btn-info btn-block" onclick="location.href='department'">부서관리</button></li>
 		<li><button class="btn btn-default btn-block" onclick="location.href='basepay'">기본급관리</button></li>
 		<li><button class="btn btn-danger btn-block">로그아웃</button></li>
 	</ul>
@@ -31,27 +31,27 @@
 <br>
 <br>
 <input type="hidden" id="result" value="${result }">
-<div id="regionInsert">
-<div id="insertTitle">지역 입력</div>
-<form action="insertRegion" id="regionSubmit">
-<input type="text" id="region" name="reginame" placeholder="지역명"><br>
+<div id="deptInsert">
+<div id="insertTitle">부서 입력</div>
+<form action="deptInsert" id="deptSubmit">
+<input type="text" id="dept" name="deptname" placeholder="부서명"><br>
 <button class="btn btn-default">추가</button>
 </form>
 </div>
 <br>
-<div id="regionList">
-	<div id="listTitle">지역 목록</div>
-	<table id="regionTable" class="table">
+<div id="deptList">
+	<div id="listTitle">부서 목록</div>
+	<table id="deptTable" class="table">
 		<tr>
 			<th>번호</th>
-			<th>지역명</th>
+			<th>부서명</th>
 			<th>수정</th>
 			<th>삭제</th>
 		</tr>
-		<c:forEach var="reg" items="${regionList }">
+		<c:forEach var="dept" items="${deptList }">
 		<tr>
-			<td>${reg.regionNum }</td>
-			<td>${reg.regionName }</td>
+			<td>${dept.deptNum }</td>
+			<td>${dept.deptName }</td>
 			<td><a href="">수정</a></td>
 			<td><a href="">삭제</a></td>
 		</tr>
@@ -63,12 +63,12 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	if($('#result').val()=='failed'){
-		alert("지역 추가에 실패했습니다. 중복을 확인해주세요.");
+		alert("부서 추가에 실패했습니다. 중복을 확인해주세요.");
 	}
 	
-	$('#regionSubmit').submit(function(){
-		if($('#region').val()==''){
-			alert("지역명을 입력해주세요");
+	$('#deptSubmit').submit(function(){
+		if($('#dept').val()==''){
+			alert("부서명을 입력해주세요");
 			return false;
 		}
 	});

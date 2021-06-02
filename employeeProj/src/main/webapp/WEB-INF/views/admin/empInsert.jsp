@@ -67,7 +67,7 @@
 			</c:forEach>
 		</select>
 		<div>기본급:</div>
-		<input type="text" id="basepay" name="basepay" value="2000000">
+		<input type="text" id="basepay" name="basepay" placeholder="기본급">
 		<div>수당:</div>
 		<input type="text" name="bonus" id="bonus" placeholder="수당">
 	</div>
@@ -140,6 +140,12 @@ $(document).ready(function() {
 	
 	$('#phone').keyup(function(){
 		if(!check_num.test($('#phone').val())){
+			alert("숫자만 입력해주세요");
+		}
+	});
+	
+	$('#basepay').keyup(function(){
+		if(!check_num.test($('#basepay').val())){
 			alert("숫자만 입력해주세요");
 		}
 	});

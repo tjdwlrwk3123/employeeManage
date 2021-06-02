@@ -21,8 +21,8 @@
 <div id="manageList">
 	<ul>
 		<li><button class="btn btn-default btn-block" onclick="location.href='list'">직원관리</button></li>
-		<li><button class="btn btn-info btn-block" onclick="location.href='region'">지역관리</button></li>
-		<li><button class="btn btn-default btn-block" onclick="location.href='position'">직위관리</button></li>
+		<li><button class="btn btn-default btn-block" onclick="location.href='region'">지역관리</button></li>
+		<li><button class="btn btn-info btn-block" onclick="location.href='position'">직위관리</button></li>
 		<li><button class="btn btn-default btn-block" onclick="location.href='department'">부서관리</button></li>
 		<li><button class="btn btn-default btn-block" onclick="location.href='basepay'">기본급관리</button></li>
 		<li><button class="btn btn-danger btn-block">로그아웃</button></li>
@@ -31,27 +31,27 @@
 <br>
 <br>
 <input type="hidden" id="result" value="${result }">
-<div id="regionInsert">
-<div id="insertTitle">지역 입력</div>
-<form action="insertRegion" id="regionSubmit">
-<input type="text" id="region" name="reginame" placeholder="지역명"><br>
+<div id="ppInsert">
+<div id="insertTitle">직위 입력</div>
+<form action="ppInsert" id="ppSubmit">
+<input type="text" id="position" name="ppname" placeholder="직위명"><br>
 <button class="btn btn-default">추가</button>
 </form>
 </div>
 <br>
-<div id="regionList">
-	<div id="listTitle">지역 목록</div>
-	<table id="regionTable" class="table">
+<div id="ppList">
+	<div id="listTitle">직위 목록</div>
+	<table id="ppTable" class="table">
 		<tr>
 			<th>번호</th>
-			<th>지역명</th>
+			<th>직위명</th>
 			<th>수정</th>
 			<th>삭제</th>
 		</tr>
-		<c:forEach var="reg" items="${regionList }">
+		<c:forEach var="pp" items="${ppList }">
 		<tr>
-			<td>${reg.regionNum }</td>
-			<td>${reg.regionName }</td>
+			<td>${pp.ppNum }</td>
+			<td>${pp.ppName }</td>
 			<td><a href="">수정</a></td>
 			<td><a href="">삭제</a></td>
 		</tr>
@@ -63,12 +63,12 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	if($('#result').val()=='failed'){
-		alert("지역 추가에 실패했습니다. 중복을 확인해주세요.");
+		alert("직위 추가에 실패했습니다. 중복을 확인해주세요.");
 	}
 	
-	$('#regionSubmit').submit(function(){
-		if($('#region').val()==''){
-			alert("지역명을 입력해주세요");
+	$('#ppSubmit').submit(function(){
+		if($('#position').val()==''){
+			alert("직위명을 입력해주세요");
 			return false;
 		}
 	});

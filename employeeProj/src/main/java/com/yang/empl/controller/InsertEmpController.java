@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.yang.empl.service.DepartmentService;
 import com.yang.empl.service.EmpService;
+import com.yang.empl.service.PositionService;
 import com.yang.empl.service.RegionService;
 import com.yang.empl.vo.DepartmentVo;
 import com.yang.empl.vo.PayforVo;
@@ -33,14 +35,18 @@ public class InsertEmpController {
 	private EmpService eService;
 	@Autowired
 	private RegionService rService;
+	@Autowired
+	private DepartmentService dService;
+	@Autowired
+	private PositionService pService;
 	
 	@RequestMapping(method = RequestMethod.GET, value="insertForm")
 	public String goInsertForm(Model model) {
 		//빈 해시맵 생성
 		
-		List<DepartmentVo> deptList=eService.getDepartment();
+		List<DepartmentVo> deptList=dService.getDepartment();
 		List<RegionVo> regList=rService.getRegion();
-		List<PositionVo> posiList=eService.getPosition();
+		List<PositionVo> posiList=pService.getPosition();
 		
 		model.addAttribute("deptList", deptList);
 		model.addAttribute("posiList", posiList);
@@ -73,7 +79,7 @@ public class InsertEmpController {
 		//아이디 만들어내기 (부서번호+직위번호+0+순차적인 시퀀스)
 		
 		//시퀀스 뽑기
-		List<DepartmentVo> dept=eService.getDepartment();
+		List<DepartmentVo> dept=dService.getDepartment();
 		int seq=eService.getIdSequence();
 		
 		String id=department+""+position+"0"+seq;

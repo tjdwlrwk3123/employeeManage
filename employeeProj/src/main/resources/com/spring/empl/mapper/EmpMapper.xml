@@ -4,20 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.spring.empl.mapper.EmpMapper">
-	<select id="getDepartment" resultType="Department">
-		select * from department
-	</select>
-	<select id="getDepartmentOne" resultType="Department" parameterType="hashmap">
-		select * from department
-		where deptnum=#{deptnum}
-	</select>
-	<select id="getPosition" resultType="Position">
-		select * from position
-	</select>
-	<select id="getPositionOne" resultType="Position" parameterType="hashmap">
-		select * from position
-		where ppnum=#{ppnum}
-	</select>
+	
+	
 	
 	<select id="getBasepay" resultType="Payfor" parameterType="hashmap">
 		select * from payfor where deptNum=#{dept} and ppNum=#{posi}
@@ -50,5 +38,30 @@
 	<select id="getRegionOne" resultType="Region" parameterType="hashmap">
 		select * from region
 		where regionnum=#{reginum}
+	</select>
+	
+	<!-- 부서관리 -->
+	<insert id="deptInsert" parameterType="string">
+		insert into department values((select nvl(max(deptnum)+1,1) from department),#{deptname})
+	</insert>
+	<select id="getDepartment" resultType="Department">
+		select * from department
+		order by deptnum
+	</select>
+	<select id="getDepartmentOne" resultType="Department" parameterType="hashmap">
+		select * from department
+		where deptnum=#{deptnum}
+	</select>
+	
+	<!-- 직위관리 -->
+	<insert id="ppInsert" parameterType="string">
+		insert into position values((select nvl(max(ppnum)+1,1) from position),#{ppname})
+	</insert>
+	<select id="getPosition" resultType="Position">
+		select * from position
+	</select>
+	<select id="getPositionOne" resultType="Position" parameterType="hashmap">
+		select * from position
+		where ppnum=#{ppnum}
 	</select>
 </mapper>
