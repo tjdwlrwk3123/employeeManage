@@ -24,11 +24,11 @@
 <br>
 <div id="manageList">
 	<ul>
-		<li><button class="btn btn-info btn-block">직원관리</button></li>
-		<li><button class="btn btn-default btn-block">지역관리</button></li>
-		<li><button class="btn btn-default btn-block">직위관리</button></li>
-		<li><button class="btn btn-default btn-block">부서관리</button></li>
-		<li><button class="btn btn-default btn-block">기본급관리</button></li>
+		<li><button class="btn btn-info btn-block" onclick="location.href='list'">직원관리</button></li>
+		<li><button class="btn btn-default btn-block" onclick="location.href='region'">지역관리</button></li>
+		<li><button class="btn btn-default btn-block" onclick="location.href='position'">직위관리</button></li>
+		<li><button class="btn btn-default btn-block" onclick="location.href='department'">부서관리</button></li>
+		<li><button class="btn btn-default btn-block" onclick="location.href='basepay'">기본급관리</button></li>
 		<li><button class="btn btn-danger btn-block">로그아웃</button></li>
 	</ul>
 </div>

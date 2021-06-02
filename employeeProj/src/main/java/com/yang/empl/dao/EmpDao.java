@@ -26,9 +26,7 @@ public class EmpDao {
 	public PositionVo getPositionOne(HashMap<String, Object> map){
 		return sqlSession.selectOne(NAMESPACE+".getPositionOne",map);
 	}
-	public RegionVo getRegionOne(HashMap<String, Object> map){
-		return sqlSession.selectOne(NAMESPACE+".getRegionOne",map);
-	}
+	
 	
 	public List<DepartmentVo> getDepartment(){
 		return sqlSession.selectList(NAMESPACE+".getDepartment");
@@ -36,9 +34,7 @@ public class EmpDao {
 	public List<PositionVo> getPosition(){
 		return sqlSession.selectList(NAMESPACE+".getPosition");
 	}
-	public List<RegionVo> getRegion(){
-		return sqlSession.selectList(NAMESPACE+".getRegion");
-	}
+	
 	
 	public PayforVo getBasepay(HashMap<String, Object> map) {
 		return sqlSession.selectOne(NAMESPACE+".getBasepay", map);

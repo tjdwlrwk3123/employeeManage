@@ -18,13 +18,7 @@
 		select * from position
 		where ppnum=#{ppnum}
 	</select>
-	<select id="getRegion" resultType="Region">
-		select * from region
-	</select>
-	<select id="getRegionOne" resultType="Region" parameterType="hashmap">
-		select * from region
-		where regionnum=#{reginum}
-	</select>
+	
 	<select id="getBasepay" resultType="Payfor" parameterType="hashmap">
 		select * from payfor where deptNum=#{dept} and ppNum=#{posi}
 	</select>
@@ -43,5 +37,18 @@
 	<select id="getEmployee" resultType="Employee">
 		select * from emplist
 		order by empnum
+	</select>
+	
+	<!-- 지역관리 -->
+	<insert id="regionInsert" parameterType="string">
+		insert into region values((select nvl(max(regionnum)+1,1) from region),#{reginame})
+	</insert>
+	<select id="getRegion" resultType="Region">
+		select * from region
+		order by regionnum
+	</select>
+	<select id="getRegionOne" resultType="Region" parameterType="hashmap">
+		select * from region
+		where regionnum=#{reginum}
 	</select>
 </mapper>

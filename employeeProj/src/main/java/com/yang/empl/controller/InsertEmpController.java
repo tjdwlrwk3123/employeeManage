@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yang.empl.service.EmpService;
+import com.yang.empl.service.RegionService;
 import com.yang.empl.vo.DepartmentVo;
 import com.yang.empl.vo.PayforVo;
 import com.yang.empl.vo.PositionVo;
@@ -30,13 +31,15 @@ public class InsertEmpController {
 	
 	@Autowired
 	private EmpService eService;
+	@Autowired
+	private RegionService rService;
 	
 	@RequestMapping(method = RequestMethod.GET, value="insertForm")
 	public String goInsertForm(Model model) {
 		//빈 해시맵 생성
 		
 		List<DepartmentVo> deptList=eService.getDepartment();
-		List<RegionVo> regList=eService.getRegion();
+		List<RegionVo> regList=rService.getRegion();
 		List<PositionVo> posiList=eService.getPosition();
 		
 		model.addAttribute("deptList", deptList);

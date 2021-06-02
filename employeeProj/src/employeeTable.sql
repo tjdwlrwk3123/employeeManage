@@ -27,7 +27,7 @@ CREATE TABLE authorities
 CREATE TABLE department
 (
 	deptNum number NOT NULL,
-	deptName varchar2(30) NOT NULL,
+	deptName varchar2(30) NOT NULL UNIQUE,
 	PRIMARY KEY (deptNum)
 );
 
@@ -72,7 +72,7 @@ CREATE TABLE payfor
 CREATE TABLE position
 (
 	ppNum number NOT NULL,
-	ppName varchar2(20) NOT NULL,
+	ppName varchar2(20) NOT NULL UNIQUE,
 	PRIMARY KEY (ppNum)
 );
 
@@ -80,7 +80,7 @@ CREATE TABLE position
 CREATE TABLE region
 (
 	regionNum number NOT NULL,
-	regionName varchar2(30) NOT NULL,
+	regionName varchar2(30) NOT NULL UNIQUE,
 	PRIMARY KEY (regionNum)
 );
 

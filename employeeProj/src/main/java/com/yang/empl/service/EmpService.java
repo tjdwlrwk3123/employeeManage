@@ -26,9 +26,7 @@ public class EmpService {
 	public PositionVo getPositionOne(HashMap<String, Object> map){
 		return edao.getPositionOne(map);
 	}
-	public RegionVo getRegionOne(HashMap<String, Object> map){
-		return edao.getRegionOne(map);
-	}
+	
 	
 	public List<DepartmentVo> getDepartment(){
 		return edao.getDepartment();
@@ -36,9 +34,7 @@ public class EmpService {
 	public List<PositionVo> getPosition(){
 		return edao.getPosition();
 	}
-	public List<RegionVo> getRegion(){
-		return edao.getRegion();
-	}
+	
 	
 	public PayforVo getBasepay(HashMap<String, Object> map) {
 		return edao.getBasepay(map);

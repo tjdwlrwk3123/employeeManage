@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yang.empl.service.EmpService;
+import com.yang.empl.service.RegionService;
 import com.yang.empl.vo.DepartmentVo;
 import com.yang.empl.vo.EmpListVo;
 
@@ -18,6 +19,8 @@ public class ListController {
 	
 	@Autowired
 	private EmpService eService;
+	@Autowired
+	private RegionService rService;
 	
 	@RequestMapping(value="/list")
 	public String join(Model model) {
@@ -39,7 +42,7 @@ public class ListController {
 			
 			deptNameList.add(eService.getDepartmentOne(map).getDeptName());
 			ppNameList.add(eService.getPositionOne(map).getPpName());
-			regiNameList.add(eService.getRegionOne(map).getRegionName());
+			regiNameList.add(rService.getRegionOne(map).getRegionName());
 		}
 		
 		model.addAttribute("emplist", emplist);
