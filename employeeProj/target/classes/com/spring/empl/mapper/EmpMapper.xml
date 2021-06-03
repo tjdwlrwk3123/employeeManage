@@ -64,8 +64,8 @@
 	<select id="getBasepay" resultType="Payfor" parameterType="hashmap">
 		select * from payfor where deptNum=#{dept} and ppNum=#{posi}
 	</select>
-	<select id="getAllBasepay" resultType="Payfor">
-		select p.paynum,p.deptnum,p.ppnum,d.deptname,t.ppname,p.basepay 
+	<select id="getAllBasepay" resultType="PDPJoin">
+		select p.paynum,p.deptnum,p.ppnum,d.deptname,t.ppname,p.basepay
 		from payfor p join department d
 		on p.deptnum=d.deptnum
 		join position t
