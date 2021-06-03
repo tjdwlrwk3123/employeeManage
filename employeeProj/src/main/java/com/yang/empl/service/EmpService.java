@@ -20,9 +20,6 @@ public class EmpService {
 	@Autowired
 	private EmpDao edao;
 	
-	public PayforVo getBasepay(HashMap<String, Object> map) {
-		return edao.getBasepay(map);
-	}
 	public int getIdSequence() {
 		return edao.getIdSequence();
 	}

@@ -20,9 +20,6 @@ public class EmpDao {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.spring.empl.mapper.EmpMapper";
 
-	public PayforVo getBasepay(HashMap<String, Object> map) {
-		return sqlSession.selectOne(NAMESPACE+".getBasepay", map);
-	}
 	public int getIdSequence() {
 		return sqlSession.selectOne(NAMESPACE+".getIdSequence");
 	}

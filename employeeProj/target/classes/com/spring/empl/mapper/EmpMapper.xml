@@ -5,11 +5,6 @@
 
 <mapper namespace="com.spring.empl.mapper.EmpMapper">
 	
-	
-	
-	<select id="getBasepay" resultType="Payfor" parameterType="hashmap">
-		select * from payfor where deptNum=#{dept} and ppNum=#{posi}
-	</select>
 	<select id="getIdSequence" resultType="int">
 		select idnum.nextval from dual
 	</select>
@@ -64,4 +59,25 @@
 		select * from position
 		where ppnum=#{ppnum}
 	</select>
+	
+	<!-- 기본급관리 -->
+	<select id="getBasepay" resultType="Payfor" parameterType="hashmap">
+		select * from payfor where deptNum=#{dept} and ppNum=#{posi}
+	</select>
+	<select id="getAllBasepay" resultType="Payfor">
+		select p.paynum,p.deptnum,p.ppnum,d.deptname,t.ppname,p.basepay 
+		from payfor p join department d
+		on p.deptnum=d.deptnum
+		join position t
+		on p.ppnum=t.ppnum
+	</select>
+	<update id="mergeBasepay" parameterType="hashmap">
+		merge into payfor
+		using dual
+		on (deptnum=#{deptNum} and ppnum=#{ppNum})
+		when matched then
+			update set basepay=#{basepay}
+		when not matched then
+			insert values((select nvl(max(paynum)+1,1) from payfor),#{deptNum},#{ppNum},#{basepay})
+	</update>
 </mapper>

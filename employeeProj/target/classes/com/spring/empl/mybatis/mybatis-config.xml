@@ -14,6 +14,7 @@
 		<typeAlias type="com.yang.empl.vo.PositionVo" alias="Position"/>
 		<typeAlias type="com.yang.empl.vo.PayforVo" alias="Payfor"/>
 		<typeAlias type="com.yang.empl.vo.EmpListVo" alias="Employee"/>
+		<typeAlias type="com.yang.empl.vo.PayDeptPositionJoinVo" alias="PDPJoin"/>
 	</typeAliases>
 	
 	<mappers>

@@ -20,7 +20,7 @@ public class RegionController {
 	@RequestMapping("/insertRegion")
 	public String insertRegion(String reginame,RedirectAttributes ra) {
 		try {
-			int insertRegion=rService.insertRegion(reginame);
+			rService.insertRegion(reginame);
 			ra.addFlashAttribute("result", "success");
 			return "redirect:region";
 		}catch(Exception e) {

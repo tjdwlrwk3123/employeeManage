@@ -55,20 +55,6 @@ public class InsertEmpController {
 		return "/admin/empInsert";
 	}
 	
-	@RequestMapping(value="getBasepay",produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
-	@ResponseBody
-	public PayforVo getBasepay(@RequestParam(defaultValue = "1")int dept,
-			@RequestParam(defaultValue = "1")int posi) {
-		
-		HashMap<String, Object> map=new HashMap<String, Object>();
-		map.put("dept", dept);
-		map.put("posi", posi);
-		
-		PayforVo basepay=eService.getBasepay(map);
-		
-		return basepay;
-	}
-	
 	@RequestMapping(value="empInsert")
 	public String empInsert(String name, Date birth, 
 			@RequestParam(defaultValue = "1") int sollun, String phone,
