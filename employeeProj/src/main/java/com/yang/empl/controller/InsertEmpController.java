@@ -62,45 +62,8 @@ public class InsertEmpController {
 			@RequestParam(defaultValue = "0") int bonus, Date joining,
 			HttpServletRequest req, RedirectAttributes ra) {
 		
-		//아이디 만들어내기 (부서번호+직위번호+0+순차적인 시퀀스)
-		
-		//시퀀스 뽑기
-		List<DepartmentVo> dept=dService.getDepartment();
-		int seq=eService.getIdSequence();
-		
-		String id=department+""+position+"0"+seq;
-		
-		//비밀번호 난수 만들기(6자리)
-		StringBuffer key = new StringBuffer();
-		Random rnd = new Random();
-		for(int i = 0; i < 6; i++){ 
-			int index = rnd.nextInt(3);
-	    	switch (index) {
-	    		case 0:
-	    			key.append((char)((int) (rnd.nextInt(26)) + 97));
-	    			break;
-	    		case 1:
-	    			key.append((char)((int) (rnd.nextInt(26)) + 65));
-	    			break;
-	    		case 2:
-	    			key.append((rnd.nextInt(10)));
-	    			break;
-	    	}
-		}
-		
-		String password=key.toString();
-		
-		System.out.println("id:"+id);
-		System.out.println("password:"+password);
-		
-		//아이디 패스워드 등록 + 리스트 저장
-		HashMap<String, Object> userMap=new HashMap<String, Object>();
 		HashMap<String, Object> empMap=new HashMap<String, Object>();
 		
-		userMap.put("userid", id);
-		userMap.put("userpassword", password);
-		
-		empMap.put("userid", id);
 		empMap.put("empname", name);
 		empMap.put("ppnum", position);
 		empMap.put("deptnum",department);
@@ -112,11 +75,10 @@ public class InsertEmpController {
 		empMap.put("bonus", bonus);
 		empMap.put("joinday", joining);
 		
-		int inserting=eService.insertTransaction(userMap, empMap);
-		
-		if(inserting==1) {
+		try {
+			int inserting=eService.insertTransaction(empMap,department,position);
 			return "redirect:/list";
-		}else {
+		}catch(Exception e) {
 			ra.addFlashAttribute("failed", "failed");
 			//이전페이지로 가기
 			String referer=req.getHeader("Referer");

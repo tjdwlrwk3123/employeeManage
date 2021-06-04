@@ -61,10 +61,6 @@ public class BasepayController {
 	public String mergeBasepay(int deptNum,int ppNum,int basepay,RedirectAttributes ra) {
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		
-		System.out.println(deptNum);
-		System.out.println(ppNum);
-		System.out.println(basepay);
-		
 		map.put("deptNum", deptNum);
 		map.put("ppNum", ppNum);
 		map.put("basepay", basepay);

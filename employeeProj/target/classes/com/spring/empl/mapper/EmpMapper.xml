@@ -12,7 +12,7 @@
 		insert into userinfo values(#{userid},#{userpassword},0)
 	</insert>
 	<insert id="empInsert" parameterType="hashmap">
-		insert into emplist values((select nvl(max(empnum)+1,0) from emplist),#{userid},
+		insert into emplist values((select nvl(max(empnum)+1,1) from emplist),#{userid},
 		#{empname},#{ppnum},#{deptnum},#{empbirth},#{sollun},#{regionnum},#{phonenum},
 		#{basepay},#{bonus},#{joinday})
 	</insert>
@@ -65,11 +65,12 @@
 		select * from payfor where deptNum=#{dept} and ppNum=#{posi}
 	</select>
 	<select id="getAllBasepay" resultType="PDPJoin">
-		select p.paynum,p.deptnum,p.ppnum,d.deptname,t.ppname,p.basepay
+		select p.paynum,p.deptnum,p.ppnum,p.basepay,d.deptname,t.ppname
 		from payfor p join department d
 		on p.deptnum=d.deptnum
 		join position t
 		on p.ppnum=t.ppnum
+		order by p.deptnum,p.ppnum
 	</select>
 	<update id="mergeBasepay" parameterType="hashmap">
 		merge into payfor

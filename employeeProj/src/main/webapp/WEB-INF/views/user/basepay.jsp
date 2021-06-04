@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +67,7 @@
 			<td>${bp.payNum }</td>
 			<td>${bp.deptName }</td>
 			<td>${bp.ppName }</td>
-			<td>${bp.basepay }</td>
+			<td><fmt:formatNumber value="${bp.basepay }" pattern="#,###"/></td>
 			<td><a href="">삭제</a></td>
 		</tr>
 		</c:forEach>
@@ -85,6 +86,8 @@ $(document).ready(function(){
 			var basepay=data.basepay;
 			
 			$("#basepay").val(basepay);
+		}).fail(function(){
+			$("#basepay").val("");
 		});
 	});
 	
@@ -93,7 +96,10 @@ $(document).ready(function(){
 			var basepay=data.basepay;
 			
 			$("#basepay").val(basepay);
+		}).fail(function(){
+			$("#basepay").val("");
 		});
+		
 	});
 });
 </script>
