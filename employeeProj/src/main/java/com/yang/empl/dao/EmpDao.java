@@ -29,7 +29,10 @@ public class EmpDao {
 	public int empInsert(HashMap<String, Object> map) {
 		return sqlSession.insert(NAMESPACE+".empInsert", map);
 	}
-	public List<EmpListVo> getEmployee(){
-		return sqlSession.selectList(NAMESPACE+".getEmployee");
+	public List<EmpListVo> getEmployee(HashMap<String, Object> map){
+		return sqlSession.selectList(NAMESPACE+".getEmployee",map);
+	}
+	public int countEmp() {
+		return sqlSession.selectOne(NAMESPACE+".countEmp");
 	}
 }

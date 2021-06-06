@@ -5,16 +5,23 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yang.empl.service.DepartmentService;
 import com.yang.empl.service.EmpService;
 import com.yang.empl.service.PositionService;
 import com.yang.empl.service.RegionService;
+import com.yang.empl.util.PageUtil;
 import com.yang.empl.vo.DepartmentVo;
 import com.yang.empl.vo.EmpListVo;
+import com.yang.empl.vo.PositionVo;
+import com.yang.empl.vo.RegionVo;
 
 @Controller
 public class ListController {
@@ -29,9 +36,30 @@ public class ListController {
 	private PositionService pService;
 	
 	@RequestMapping(value="/list")
-	public String join(Model model) {
+	public String join(Model model,
+			@RequestParam(required = false) String search,
+			@RequestParam(required = false) String keyword,
+			@RequestParam(defaultValue = "1")int pageNum) {
 		
-		List<EmpListVo> emplist=eService.getEmployee();
+		HashMap<String, Object> searchMap=new HashMap<String, Object>();
+		
+		if(keyword!=null && keyword.equals("")) {
+			searchMap.put("search", search);
+			searchMap.put("keyword", keyword);
+			model.addAttribute("search", search);
+			model.addAttribute("keyword", keyword);
+		}
+		
+		int totalRowCount=eService.countEmp();
+		PageUtil pu=new PageUtil(pageNum, 10, 10, totalRowCount);
+		int startRow=pu.getStartRow();
+		int endRow=pu.getEndRow();
+		
+		searchMap.put("startRow", startRow);
+		searchMap.put("endRow", endRow);
+		
+		
+		List<EmpListVo> emplist=eService.getEmployee(searchMap);
 		
 		ArrayList<String> deptNameList=new ArrayList<String>();
 		ArrayList<String> ppNameList=new ArrayList<String>();
@@ -55,7 +83,25 @@ public class ListController {
 		model.addAttribute("deptName", deptNameList);
 		model.addAttribute("ppName", ppNameList);
 		model.addAttribute("regiName", regiNameList);
+		model.addAttribute("pu", pu);
+		
 		
 		return "/user/main";
+	}
+	
+	@RequestMapping(produces = {MediaType.APPLICATION_JSON_UTF8_VALUE},value="getSelectRegion")
+	@ResponseBody
+	public List<RegionVo> getSelectRegion(String keyword){
+		return rService.getRegion();
+	}
+	@RequestMapping(produces = {MediaType.APPLICATION_JSON_UTF8_VALUE},value="getSelectDept")
+	@ResponseBody
+	public List<DepartmentVo> getSelectDept(String keyword){
+		return dService.getDepartment();
+	}
+	@RequestMapping(produces = {MediaType.APPLICATION_JSON_UTF8_VALUE},value="getSelectPosi")
+	@ResponseBody
+	public List<PositionVo> getSelectPosi(String keyword){
+		return pService.getPosition();
 	}
 }

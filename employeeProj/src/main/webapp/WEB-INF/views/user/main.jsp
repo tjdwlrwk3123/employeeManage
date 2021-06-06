@@ -84,9 +84,81 @@
 		</c:forEach>
 	</table>
 </div>
+<div id="paging">
+</div>
+<div id="searchDiv">
+	<form action="list" method="post">
+		<select id="search" name="search">
+			<option value="userid">아이디</option>
+			<option value="empname">이름</option>
+			<option value="contactadress">전화번호</option>
+			<option value="regionnum">지역명</option>
+			<option value="deptnum">부서명</option>
+			<option value="ppnum">직위명</option>
+		</select>
+		<input type="text" name="keyword" id="selectKeyword">
+		<select id="selectBox" name="keyword" style="display:none" disabled="disabled">
+		</select>
+		<button class="btn btn-default">검색</button>
+	</form>
+</div>
 <div id="addfunc">
 	<a href="insertForm" class="btn btn-primary">직원추가</a>
 	<a href="#" class="btn btn-primary">직원출력</a>
 </div>
 </body>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#search').on('change',function(){
+		console.log($(this).val());
+		var content='';
+		$('#selectBox').empty();
+		if($(this).val()=='regionnum'){
+			$.getJSON('${cp}/getSelectRegion?keyword='+$(this).val(),function(data){
+				if(data!=null){
+					for(let i=0;i<data.length;i++){
+						content+='<option value="'+data[i].regionNum+'">'+data[i].regionName+'</option>';
+					}
+					$('#selectBox').append(content);
+				}
+			});
+			$('#selectKeyword').css('display','none');
+			$('#selectKeyword').attr('disabled',true);
+			$('#selectBox').css('display','');
+			$('#selectBox').attr('disabled',false);
+		}else if($(this).val()=='deptnum'){
+			$.getJSON('${cp}/getSelectDept?keyword='+$(this).val(),function(data){
+				if(data!=null){
+					for(let i=0;i<data.length;i++){
+						content+='<option value="'+data[i].deptNum+'">'+data[i].deptName+'</option>';
+					}
+					$('#selectBox').append(content);
+				}
+			});
+			$('#selectKeyword').css('display','none');
+			$('#selectKeyword').attr('disabled',true);
+			$('#selectBox').css('display','');
+			$('#selectBox').attr('disabled',false);
+		}else if($(this).val()=='ppnum'){
+			$.getJSON('${cp}/getSelectPosi?keyword='+$(this).val(),function(data){
+				if(data!=null){
+					for(let i=0;i<data.length;i++){
+						content+='<option value="'+data[i].ppNum+'">'+data[i].ppName+'</option>';
+					}
+					$('#selectBox').append(content);
+				}
+			});
+			$('#selectKeyword').css('display','none');
+			$('#selectKeyword').attr('disabled',true);
+			$('#selectBox').css('display','');
+			$('#selectBox').attr('disabled',false);
+		}else{
+			$('#selectKeyword').css('display','');
+			$('#selectKeyword').attr('disabled',false);
+			$('#selectBox').attr('disabled',true);
+			$('#selectBox').disabled;
+		}
+	});
+});
+</script>
 </html>

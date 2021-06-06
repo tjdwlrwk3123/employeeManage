@@ -17,8 +17,24 @@
 		#{basepay},#{bonus},#{joinday})
 	</insert>
 	
-	<select id="getEmployee" resultType="Employee">
-		select * from emplist
+	<select id="getEmployee" parameterType="hashmap" resultType="Employee">
+		select * from(
+			select a.*,rownum rnum from
+			(
+				select * from emplist
+				<if test="keyword!=null and keyword!=''">
+					<choose>
+						<when test="search='regionnum' or search='ppnum' or search='deptnum'">
+							where ${search} = #{keyword}
+						</when>
+						<otherwise>
+							where ${search} like '*'||#{keyword}||'*'
+						</otherwise>
+					</choose>
+				</if>
+			) a
+		)
+		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
 		order by empnum
 	</select>
 	
@@ -81,4 +97,9 @@
 		when not matched then
 			insert values((select nvl(max(paynum)+1,1) from payfor),#{deptNum},#{ppNum},#{basepay})
 	</update>
+	
+	<!-- 페이징처리 -->
+	<select id="countEmp" resultType="int">
+		select count(*) from emplist
+	</select>
 </mapper>
