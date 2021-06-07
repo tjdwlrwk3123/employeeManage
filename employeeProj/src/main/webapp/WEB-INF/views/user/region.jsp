@@ -53,7 +53,10 @@
 			<td>${reg.regionNum }</td>
 			<td>${reg.regionName }</td>
 			<td><a href="">수정</a></td>
-			<td><a href="">삭제</a></td>
+			<td>
+				<a href="${cp }/regionDelete?regionNum=${reg.regionNum}">삭제</a>
+				<input type="hidden" id="delete" value=${delete }>
+			</td>
 		</tr>
 		</c:forEach>
 	</table>
@@ -66,12 +69,18 @@ $(document).ready(function(){
 		alert("지역 추가에 실패했습니다. 중복을 확인해주세요.");
 	}
 	
+	if($('#delete').val()=='failed'){
+		alert("지역 삭제 실패했습니다. 해당 지역에 사는 직원의 명단이 존재합니다.");
+	}
+	
 	$('#regionSubmit').submit(function(){
 		if($('#region').val()==''){
 			alert("지역명을 입력해주세요");
 			return false;
 		}
 	});
+	
+	
 });
 </script>
 </html>

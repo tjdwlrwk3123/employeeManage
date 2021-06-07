@@ -53,7 +53,10 @@
 			<td>${pp.ppNum }</td>
 			<td>${pp.ppName }</td>
 			<td><a href="">수정</a></td>
-			<td><a href="">삭제</a></td>
+			<td>
+				<a href="${cp }/ppDelete?ppNum=${pp.ppNum}">삭제</a>
+				<input type="hidden" id="delete" value="${delete }">
+			</td>
 		</tr>
 		</c:forEach>
 	</table>
@@ -65,6 +68,9 @@ $(document).ready(function(){
 	if($('#result').val()=='failed'){
 		alert("직위 추가에 실패했습니다. 중복을 확인해주세요.");
 	}
+	if($('#delete').val()=='failed'){
+		alert("직위 삭제에 실패했습니다. 해당 직위를 가진 직원 명단이 존재합니다.");
+	}
 	
 	$('#ppSubmit').submit(function(){
 		if($('#position').val()==''){
@@ -72,6 +78,8 @@ $(document).ready(function(){
 			return false;
 		}
 	});
+	
+	
 });
 </script>
 </html>

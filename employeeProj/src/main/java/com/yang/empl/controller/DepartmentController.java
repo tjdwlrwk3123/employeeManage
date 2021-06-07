@@ -36,4 +36,17 @@ public class DepartmentController {
 			return "redirect:department";
 		}
 	}
+	
+	@RequestMapping("/deptDelete")
+	public String deptDelete(int deptNum,RedirectAttributes ra) {
+		try {
+			dService.deptDelete(deptNum);
+			ra.addFlashAttribute("delete", "success");
+			return "redirect:department";
+		}catch(Exception e) {
+			e.printStackTrace();
+			ra.addFlashAttribute("delete", "failed");
+			return "redirect:department";
+		}
+	}
 }

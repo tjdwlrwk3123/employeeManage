@@ -25,4 +25,7 @@ public class PositionDao {
 	public int ppInsert(String ppname) {
 		return sqlSession.insert(NAMESPACE+".ppInsert", ppname);
 	}
+	public int ppDelete(int ppNum) {
+		return sqlSession.delete(NAMESPACE+".ppDelete", ppNum);
+	}
 }

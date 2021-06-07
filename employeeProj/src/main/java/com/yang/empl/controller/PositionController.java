@@ -36,4 +36,17 @@ public class PositionController {
 			return "redirect:position";
 		}
 	}
+	
+	@RequestMapping("/ppDelete")
+	public String ppDelete(int ppNum,RedirectAttributes ra) {
+		try {
+			pService.ppDelete(ppNum);
+			ra.addFlashAttribute("delete", "success");
+			return "redirect:position";
+		}catch(Exception e) {
+			e.printStackTrace();
+			ra.addFlashAttribute("delete", "failed");
+			return "redirect:position";
+		}
+	}
 }

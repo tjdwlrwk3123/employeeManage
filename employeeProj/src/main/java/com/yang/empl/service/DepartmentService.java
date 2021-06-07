@@ -23,4 +23,7 @@ public class DepartmentService {
 	public int deptInsert(String deptname) {
 		return ddao.deptInsert(deptname);
 	}
+	public int deptDelete(int deptNum) {
+		return ddao.deptDelete(deptNum);
+	}
 }

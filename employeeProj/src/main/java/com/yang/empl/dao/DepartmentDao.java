@@ -24,4 +24,7 @@ public class DepartmentDao {
 	public int deptInsert(String deptname) {
 		return sqlSession.insert(NAMESPACE+".deptInsert", deptname);
 	}
+	public int deptDelete(int deptNum) {
+		return sqlSession.delete(NAMESPACE+".deptDelete", deptNum);
+	}
 }

@@ -25,5 +25,7 @@ public class RegionDao {
 	public int insertRegion(String reginame) {
 		return sqlSession.insert(NAMESPACE+".regionInsert",reginame);
 	}
-	
+	public int regionDelete(int regionNum) {
+		return sqlSession.delete(NAMESPACE+".regionDelete", regionNum);
+	}
 }

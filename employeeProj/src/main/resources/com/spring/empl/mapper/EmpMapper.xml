@@ -24,11 +24,11 @@
 				select * from emplist
 				<if test="keyword!=null and keyword!=''">
 					<choose>
-						<when test="search='regionnum' or search='ppnum' or search='deptnum'">
+						<when test="search=='regionnum' or search=='ppnum' or search=='deptnum'">
 							where ${search} = #{keyword}
 						</when>
 						<otherwise>
-							where ${search} like '*'||#{keyword}||'*'
+							where ${search} like '%'||#{keyword}||'%'
 						</otherwise>
 					</choose>
 				</if>
@@ -50,6 +50,9 @@
 		select * from region
 		where regionnum=#{reginum}
 	</select>
+	<delete id="regionDelete" parameterType="int">
+		delete from region where regionnum=${regionnum}
+	</delete>
 	
 	<!-- 부서관리 -->
 	<insert id="deptInsert" parameterType="string">
@@ -63,6 +66,9 @@
 		select * from department
 		where deptnum=#{deptnum}
 	</select>
+	<delete id="deptDelete" parameterType="int">
+		delete from department where deptnum=${deptnum}
+	</delete>
 	
 	<!-- 직위관리 -->
 	<insert id="ppInsert" parameterType="string">
@@ -75,6 +81,9 @@
 		select * from position
 		where ppnum=#{ppnum}
 	</select>
+	<delete id="ppDelete" parameterType="int">
+		delete from position where ppnum=${ppnum}
+	</delete>
 	
 	<!-- 기본급관리 -->
 	<select id="getBasepay" resultType="Payfor" parameterType="hashmap">

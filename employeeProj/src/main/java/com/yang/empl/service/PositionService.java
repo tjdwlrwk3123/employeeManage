@@ -23,4 +23,7 @@ public class PositionService {
 	public int ppInsert(String ppname) {
 		return pdao.ppInsert(ppname);
 	}
+	public int ppDelete(int ppNum) {
+		return pdao.ppDelete(ppNum);
+	}
 }

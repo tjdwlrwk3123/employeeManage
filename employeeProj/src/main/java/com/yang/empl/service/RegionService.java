@@ -24,4 +24,7 @@ public class RegionService {
 	public int insertRegion(String reginame) {
 		return rdao.insertRegion(reginame);
 	}
+	public int regionDelete(int regionNum) {
+		return rdao.regionDelete(regionNum);
+	}
 }

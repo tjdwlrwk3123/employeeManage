@@ -38,4 +38,17 @@ public class RegionController {
 		
 		return "/user/region";
 	}
+	
+	@RequestMapping("/regionDelete")
+	public String deleteRegion(int regionNum,RedirectAttributes ra) {
+		try {
+			rService.regionDelete(regionNum);
+			ra.addFlashAttribute("delete", "success");
+			return "redirect:region";
+		}catch(Exception e) {
+			e.printStackTrace();
+			ra.addFlashAttribute("delete", "failed");
+			return "redirect:region";
+		}
+	}
 }

@@ -85,6 +85,16 @@
 	</table>
 </div>
 <div id="paging">
+	<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }" >
+		<c:choose>
+			<c:when test="${pu.pageNum==i }">
+				<a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}"><span style="color: blue">[${i }]</span></a>
+			</c:when>
+			<c:otherwise>
+				<a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}"><span style="color: gray">[${i }]</span></a>
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
 </div>
 <div id="searchDiv">
 	<form action="list" method="post">

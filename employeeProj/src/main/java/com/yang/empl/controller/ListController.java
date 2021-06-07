@@ -37,13 +37,16 @@ public class ListController {
 	
 	@RequestMapping(value="/list")
 	public String join(Model model,
-			@RequestParam(required = false) String search,
-			@RequestParam(required = false) String keyword,
+			@RequestParam(required = false,value = "search") String search,
+			@RequestParam(required = false,value = "keyword") String keyword,
 			@RequestParam(defaultValue = "1")int pageNum) {
 		
 		HashMap<String, Object> searchMap=new HashMap<String, Object>();
 		
-		if(keyword!=null && keyword.equals("")) {
+		
+		if(keyword!=null && !keyword.equals("")) {
+			System.out.println(search);
+			System.out.println(keyword);
 			searchMap.put("search", search);
 			searchMap.put("keyword", keyword);
 			model.addAttribute("search", search);
@@ -60,6 +63,7 @@ public class ListController {
 		
 		
 		List<EmpListVo> emplist=eService.getEmployee(searchMap);
+		
 		
 		ArrayList<String> deptNameList=new ArrayList<String>();
 		ArrayList<String> ppNameList=new ArrayList<String>();
