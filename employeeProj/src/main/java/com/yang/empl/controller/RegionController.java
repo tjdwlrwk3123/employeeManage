@@ -3,6 +3,7 @@ package com.yang.empl.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,9 +46,13 @@ public class RegionController {
 			rService.regionDelete(regionNum);
 			ra.addFlashAttribute("delete", "success");
 			return "redirect:region";
+		}catch(DataIntegrityViolationException de) {
+			System.out.println("제약조건 오류발생");
+			ra.addFlashAttribute("delete", "failed");
+			return "redirect:region";
 		}catch(Exception e) {
 			e.printStackTrace();
-			ra.addFlashAttribute("delete", "failed");
+			ra.addFlashAttribute("delete", "idk");
 			return "redirect:region";
 		}
 	}
