@@ -39,7 +39,8 @@ public class ListController {
 	public String join(Model model,
 			@RequestParam(required = false,value = "search") String search,
 			@RequestParam(required = false,value = "keyword") String keyword,
-			@RequestParam(defaultValue = "1")int pageNum) {
+			@RequestParam(defaultValue = "1")int pageNum,
+			@RequestParam(required = false,value = "sort") String sort) {
 		
 		HashMap<String, Object> searchMap=new HashMap<String, Object>();
 		
@@ -52,8 +53,15 @@ public class ListController {
 			model.addAttribute("search", search);
 			model.addAttribute("keyword", keyword);
 		}
+		if(sort!=null) {
+			if(sort.equals("totalpay")) {
+				sort="basepay+bonus";
+			}
+			System.out.println(sort);
+			searchMap.put("sort", sort);
+		}
 		
-		int totalRowCount=eService.countEmp();
+		int totalRowCount=eService.countEmp(searchMap);
 		PageUtil pu=new PageUtil(pageNum, 10, 10, totalRowCount);
 		int startRow=pu.getStartRow();
 		int endRow=pu.getEndRow();

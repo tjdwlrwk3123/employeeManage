@@ -74,7 +74,7 @@ public class EmpService {
 	public List<EmpListVo> getEmployee(HashMap<String, Object> map){
 		return edao.getEmployee(map);
 	}
-	public int countEmp() {
-		return edao.countEmp();
+	public int countEmp(HashMap<String, Object> map) {
+		return edao.countEmp(map);
 	}
 }

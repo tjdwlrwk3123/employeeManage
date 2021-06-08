@@ -16,7 +16,7 @@
 #manageList ul{list-style: none;}
 #manageList ul li{float: left; width: 300px;}
 
-#employManage {width:1500px; height: 800px;}
+#employManage {width:1500px; height: 600px;}
 #employManage table{width:1500px; text-align: center;}
 
 </style>
@@ -38,19 +38,19 @@
 <div id="employManage">
 	<table class="table">
 		<tr>
-			<th>번호</th>
-			<th>아이디</th>
+			<th><a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}" style="color:blue; text-decoration: none;">번호</a></th>
+			<th><a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=userid" style="color:blue; text-decoration: none;">아이디</a></th>
 			<th>이름</th>
-			<th>생년월일</th>
+			<th><a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=empbirth" style="color:blue; text-decoration: none;">생년월일</a></th>
 			<th>양/음력</th>
 			<th>전화번호</th>
 			<th>지역명</th>
-			<th>부서명</th>
-			<th>직위명</th>
-			<th>입사일</th>
-			<th>기본급</th>
+			<th><a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=deptnum" style="color:blue; text-decoration: none;">부서명</a></th>
+			<th><a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=ppnum" style="color:blue; text-decoration: none;">직위명</a></th>
+			<th><a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=joindate" style="color:blue; text-decoration: none;">입사일</a></th>
+			<th><a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=basepay" style="color:blue; text-decoration: none;">기본급</a></th>
 			<th>수당</th>
-			<th>급여</th>
+			<th><a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=totalpay" style="color:blue; text-decoration: none;">급여</a></th>
 			<th>사진등록</th>
 			<th class="warning">수정</th>
 			<th class="danger">삭제</th>

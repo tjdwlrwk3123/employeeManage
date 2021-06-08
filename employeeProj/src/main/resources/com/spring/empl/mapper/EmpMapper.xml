@@ -35,7 +35,21 @@
 			) a
 		)
 		<![CDATA[ where rnum>=#{startRow} and rnum<=#{endRow} ]]>
-		order by empnum
+		<choose>
+			<when test="sort!=null and sort!=''">
+				<choose>
+					<when test="sort=='basepay' or sort=='basepay+bonus'">
+					order by ${sort} desc
+					</when>
+					<otherwise>
+					order by ${sort} asc
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>
+				order by empnum
+			</otherwise>
+		</choose>
 	</select>
 	
 	<!-- 지역관리 -->
@@ -108,7 +122,17 @@
 	</update>
 	
 	<!-- 페이징처리 -->
-	<select id="countEmp" resultType="int">
+	<select id="countEmp" resultType="int" parameterType="hashmap">
 		select count(*) from emplist
+		<if test="keyword!=null and keyword!=''">
+			<choose>
+				<when test="search=='regionnum' or search=='ppnum' or search=='deptnum'">
+					where ${search} = #{keyword}
+				</when>
+				<otherwise>
+					where ${search} like '%'||#{keyword}||'%'
+				</otherwise>
+			</choose>
+		</if>
 	</select>
 </mapper>

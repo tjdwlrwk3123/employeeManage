@@ -71,6 +71,9 @@ $(document).ready(function(){
 	if($('#delete').val()=='failed'){
 		alert("부서 삭제에 실패했습니다. 해당 부서에 소속된 직원명단이 존재합니다.");
 	}
+	if($('#delete').val()=='idk'){
+		alert("삭제 도중 오류가 발생했습니다. 관리자에게 문의해주세요.");
+	}
 	
 	$('#deptSubmit').submit(function(){
 		if($('#dept').val()==''){
