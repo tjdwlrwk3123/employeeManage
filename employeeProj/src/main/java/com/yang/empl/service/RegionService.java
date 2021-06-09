@@ -27,4 +27,7 @@ public class RegionService {
 	public int regionDelete(int regionNum) {
 		return rdao.regionDelete(regionNum);
 	}
+	public int updateRegion(HashMap<String, Object> map) {
+		return rdao.updateRegion(map);
+	}
 }

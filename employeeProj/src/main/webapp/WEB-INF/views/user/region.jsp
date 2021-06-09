@@ -52,7 +52,12 @@
 		<tr>
 			<td>${reg.regionNum }</td>
 			<td>${reg.regionName }</td>
-			<td><a href="">수정</a></td>
+			<td>
+				<span class="updateButton">수정</span>
+				<input type="text" class="newRegionName" style="display: none;">
+				<button class="updateRegion" style="display: none;">확인</button>
+				<input type="hidden" id="update" value="${update }">
+			</td>
 			<td>
 				<a href="${cp }/regionDelete?regionNum=${reg.regionNum}">삭제</a>
 				<input type="hidden" id="delete" value=${delete }>
@@ -65,8 +70,16 @@
 </body>
 <script type="text/javascript">
 $(document).ready(function(){
+	function getContextPath() {
+		var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+		return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+	};
+	
 	if($('#result').val()=='failed'){
 		alert("지역 추가에 실패했습니다. 중복을 확인해주세요.");
+	}
+	if($('#update').val()=='failed'){
+		alert("지역 수정에 실패했습니다. 중복을 확인해주세요.");
 	}
 	
 	if($('#delete').val()=='failed'){
@@ -80,6 +93,24 @@ $(document).ready(function(){
 		}
 	});
 	
+	$('.updateButton').hover(function(){
+		$(this).css('color','blue');
+	},function(){
+		$(this).css('color','black');
+	});
+	
+	$('.updateButton').click(function(){
+		$(this).next().toggle();
+		$(this).next().next().toggle();
+	});
+	
+	$('.updateRegion').click(function(){
+		console.log($(this).parent().prev().prev().text());
+		var regionNum=$(this).parent().prev().prev().text();
+		var newName=$(this).prev().val();
+		
+		location.href=getContextPath()+"/updateRegion?regionNum="+regionNum+"&regionName="+newName;
+	});
 	
 });
 </script>

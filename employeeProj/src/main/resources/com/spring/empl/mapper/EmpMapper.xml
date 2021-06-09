@@ -78,6 +78,9 @@
 	<delete id="regionDelete" parameterType="int">
 		delete from region where regionnum=${regionnum}
 	</delete>
+	<update id="updateRegion" parameterType="hashmap">
+		update region set regionname=#{regionname} where regionnum=#{regionnum}
+	</update>
 	
 	<!-- 부서관리 -->
 	<insert id="deptInsert" parameterType="string">

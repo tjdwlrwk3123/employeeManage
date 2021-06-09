@@ -28,4 +28,7 @@ public class RegionDao {
 	public int regionDelete(int regionNum) {
 		return sqlSession.delete(NAMESPACE+".regionDelete", regionNum);
 	}
+	public int updateRegion(HashMap<String, Object> map) {
+		return sqlSession.update(NAMESPACE+".updateRegion", map);
+	}
 }
