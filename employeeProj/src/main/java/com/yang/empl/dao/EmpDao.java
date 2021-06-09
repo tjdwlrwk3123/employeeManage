@@ -35,4 +35,14 @@ public class EmpDao {
 	public int countEmp(HashMap<String, Object> map) {
 		return sqlSession.selectOne(NAMESPACE+".countEmp",map);
 	}
+	//직원 삭제
+	public int deleteEmp(String userid) {
+		return sqlSession.delete(NAMESPACE+".deleteEmp",userid);
+	}
+	public int deleteAuth(String userid) {
+		return sqlSession.delete(NAMESPACE+".deleteAuth",userid);
+	}
+	public int deleteUser(String userid) {
+		return sqlSession.delete(NAMESPACE+".deleteUser",userid);
+	}
 }

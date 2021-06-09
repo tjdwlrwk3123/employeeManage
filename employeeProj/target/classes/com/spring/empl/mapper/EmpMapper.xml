@@ -52,6 +52,17 @@
 		</choose>
 	</select>
 	
+	<!-- 직원삭제(아이디,권한삭제까지) -->
+	<delete id="deleteEmp" parameterType="string">
+		delete from emplist where userid=#{userid}
+	</delete>
+	<delete id="deleteAuth" parameterType="string">
+		delete from authorities where userid=#{userid}
+	</delete>
+	<delete id="deleteUser" parameterType="string">
+		delete from userinfo where userid=#{userid}
+	</delete>
+	
 	<!-- 지역관리 -->
 	<insert id="regionInsert" parameterType="string">
 		insert into region values((select nvl(max(regionnum)+1,1) from region),#{reginame})

@@ -77,4 +77,12 @@ public class EmpService {
 	public int countEmp(HashMap<String, Object> map) {
 		return edao.countEmp(map);
 	}
+	//직원 삭제
+	@Transactional(rollbackFor = {Exception.class})
+	public int deleteEmp(String userid) {
+		edao.deleteAuth(userid);
+		edao.deleteEmp(userid);
+		edao.deleteUser(userid);
+		return 1;
+	}
 }

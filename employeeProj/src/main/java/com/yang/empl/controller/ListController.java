@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yang.empl.service.DepartmentService;
 import com.yang.empl.service.EmpService;
@@ -115,5 +116,19 @@ public class ListController {
 	@ResponseBody
 	public List<PositionVo> getSelectPosi(String keyword){
 		return pService.getPosition();
+	}
+	
+	//직원 삭제
+	@RequestMapping("/deleteEmp")
+	public String deleteEmp(String userid,RedirectAttributes ra) {
+		try{
+			eService.deleteEmp(userid);
+			ra.addFlashAttribute("result", "success");
+			return "redirect:/list";
+		}catch(Exception e) {
+			e.printStackTrace();
+			ra.addFlashAttribute("result", "failed");
+			return "redirect:/list";
+		}
 	}
 }

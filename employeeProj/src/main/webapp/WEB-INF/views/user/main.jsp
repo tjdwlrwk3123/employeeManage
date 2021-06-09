@@ -79,7 +79,10 @@
 			<button>등록</button>
 			</td>
 			<td><a href="">수정</a></td>
-			<td><a href="">삭제</a></td>
+			<td>
+				<a href="${cp }/deleteEmp?userid=${emp.userId }" onclick="return confirm('직원번호:${emp.empNum} / 이름:${emp.empName }\n삭제하시겠습니까?')">삭제</a>
+				<input type="hidden" id="result" value="${result }">
+			</td>
 		</tr>
 		</c:forEach>
 	</table>
@@ -169,6 +172,10 @@ $(document).ready(function(){
 			$('#selectBox').disabled;
 		}
 	});
+	
+	if($('#result').val()=='failed'){
+		alert("삭제에 실패했습니다.");
+	}
 });
 </script>
 </html>
