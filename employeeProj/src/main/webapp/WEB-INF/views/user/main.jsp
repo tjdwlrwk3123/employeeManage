@@ -16,8 +16,8 @@
 #manageList ul{list-style: none;}
 #manageList ul li{float: left; width: 300px;}
 
-#employManage {width:1500px; height: 600px;}
-#employManage table{width:1500px; text-align: center;}
+#employManage {width:1900px; height: 800px;}
+#employManage table{width:1900px; text-align: center;}
 
 </style>
 <body>
@@ -76,11 +76,16 @@
 			<td><fmt:formatNumber value="${emp.bonus }" pattern="#,###"/></td>
 			<td><fmt:formatNumber value="${emp.basepay + emp.bonus }" pattern="#,###"/></td>
 			<td>
-			<button>등록</button>
+				<form action="${cp }/insertPhoto" enctype="multipart/form-data" method="post">
+				<input type="hidden" value="${emp.empNum }" name="empNum">
+				<input type="file" name="photo" accept="image/*" style="width: 160px;" required/>
+				<button>등록</button>
+				</form>
+				<input type="hidden" value="${insertImg }" class="insertImg">
 			</td>
 			<td><a href="">수정</a></td>
 			<td>
-				<a href="${cp }/deleteEmp?userid=${emp.userId }" onclick="return confirm('직원번호:${emp.empNum} / 이름:${emp.empName }\n삭제하시겠습니까?')">삭제</a>
+				<a href="${cp }/deleteEmp?userid=${emp.userId }&empNum=${emp.empNum}" onclick="return confirm('직원번호:${emp.empNum} / 이름:${emp.empName }\n삭제하시겠습니까?')">삭제</a>
 				<input type="hidden" id="result" value="${result }">
 			</td>
 		</tr>
@@ -175,6 +180,11 @@ $(document).ready(function(){
 	
 	if($('#result').val()=='failed'){
 		alert("삭제에 실패했습니다.");
+	}
+	if($('.insertImg').val()=='success'){
+		alert("사진을 등록했습니다.");
+	}else if($('.insertImg').val()=='failed'){
+		alert("사진 등록에 실패했습니다");
 	}
 });
 </script>

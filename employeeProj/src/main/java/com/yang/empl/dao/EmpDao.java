@@ -45,4 +45,10 @@ public class EmpDao {
 	public int deleteUser(String userid) {
 		return sqlSession.delete(NAMESPACE+".deleteUser",userid);
 	}
+	public int deletePhoto(int empNum) {
+		return sqlSession.delete(NAMESPACE+".deletePhoto", empNum);
+	}
+	public int insertPhoto(HashMap<String, Object> map) {
+		return sqlSession.insert(NAMESPACE+".insertPhoto", map);
+	}
 }

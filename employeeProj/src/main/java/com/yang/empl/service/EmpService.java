@@ -79,10 +79,15 @@ public class EmpService {
 	}
 	//직원 삭제
 	@Transactional(rollbackFor = {Exception.class})
-	public int deleteEmp(String userid) {
+	public int deleteEmp(String userid,int empNum) {
 		edao.deleteAuth(userid);
+		edao.deletePhoto(empNum);
 		edao.deleteEmp(userid);
 		edao.deleteUser(userid);
 		return 1;
+	}
+	//사진 추가
+	public int insertPhoto(HashMap<String, Object> map) {
+		return edao.insertPhoto(map);
 	}
 }

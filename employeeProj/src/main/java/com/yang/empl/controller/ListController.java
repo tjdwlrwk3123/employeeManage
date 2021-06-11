@@ -1,17 +1,24 @@
 package com.yang.empl.controller;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yang.empl.service.DepartmentService;
@@ -120,14 +127,45 @@ public class ListController {
 	
 	//직원 삭제
 	@RequestMapping("/deleteEmp")
-	public String deleteEmp(String userid,RedirectAttributes ra) {
+	public String deleteEmp(String userid,int empNum,RedirectAttributes ra) {
 		try{
-			eService.deleteEmp(userid);
+			eService.deleteEmp(userid,empNum);
 			ra.addFlashAttribute("result", "success");
 			return "redirect:/list";
 		}catch(Exception e) {
 			e.printStackTrace();
 			ra.addFlashAttribute("result", "failed");
+			return "redirect:/list";
+		}
+	}
+	
+	@Autowired ServletContext sc;
+	
+	//사진추가
+	@RequestMapping("/insertPhoto")
+	public String insertPhoto(@RequestParam(value = "photo")MultipartFile photo, int empNum,RedirectAttributes ra) {
+		
+		String realPath=sc.getRealPath("/resources/imgFolder");
+		System.out.println(realPath);
+		String filename=photo.getOriginalFilename();
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		System.out.println(empNum);
+		System.out.println(filename);
+		map.put("empnum", empNum);
+		map.put("img", filename);
+		
+		try {
+			InputStream is=photo.getInputStream();
+			FileOutputStream fos=new FileOutputStream(realPath+"\\"+filename);
+			FileCopyUtils.copy(is, fos);
+			is.close();
+			fos.close();
+			ra.addFlashAttribute("insertImg", "success");
+			eService.insertPhoto(map);
+			return "redirect:/list";
+		}catch(IOException ie) {
+			ie.printStackTrace();
+			ra.addFlashAttribute("insertImg", "failed");
 			return "redirect:/list";
 		}
 	}
