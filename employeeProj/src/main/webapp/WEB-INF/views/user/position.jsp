@@ -52,7 +52,12 @@
 		<tr>
 			<td>${pp.ppNum }</td>
 			<td>${pp.ppName }</td>
-			<td><a href="">수정</a></td>
+			<td>
+				<span class="updateButton">수정</span>
+				<input type="text" class="newPositionName" style="display: none;">
+				<button class="updatePosition" style="display: none;">확인</button>
+				<input type="hidden" id="update" value="${update }">
+			</td>
 			<td>
 				<a href="${cp }/ppDelete?ppNum=${pp.ppNum}">삭제</a>
 				<input type="hidden" id="delete" value="${delete }">
@@ -65,9 +70,18 @@
 </body>
 <script type="text/javascript">
 $(document).ready(function(){
+	function getContextPath() {
+		var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+		return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+	};
+	
 	if($('#result').val()=='failed'){
 		alert("직위 추가에 실패했습니다. 중복을 확인해주세요.");
 	}
+	if($('#update').val()=='failed'){
+		alert("직위 수정에 실패했습니다. 중복을 확인해주세요.");
+	}
+	
 	if($('#delete').val()=='failed'){
 		alert("직위 삭제에 실패했습니다. 해당 직위를 가진 직원 명단이 존재합니다.");
 	}
@@ -77,6 +91,25 @@ $(document).ready(function(){
 			alert("직위명을 입력해주세요");
 			return false;
 		}
+	});
+	
+	$('.updateButton').hover(function(){
+		$(this).css('color','blue');
+	},function(){
+		$(this).css('color','black');
+	});
+	
+	$('.updateButton').click(function(){
+		$(this).next().toggle();
+		$(this).next().next().toggle();
+	});
+	
+	$('.updatePosition').click(function(){
+		console.log($(this).parent().prev().prev().text());
+		var ppNum=$(this).parent().prev().prev().text();
+		var newName=$(this).prev().val();
+		
+		location.href=getContextPath()+"/updatePosition?ppNum="+ppNum+"&ppName="+newName;
 	});
 	
 	

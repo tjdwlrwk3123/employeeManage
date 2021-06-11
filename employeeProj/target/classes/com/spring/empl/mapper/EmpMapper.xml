@@ -97,6 +97,9 @@
 	<delete id="deptDelete" parameterType="int">
 		delete from department where deptnum=${deptnum}
 	</delete>
+	<update id="updateDept" parameterType="hashmap">
+		update department set deptname=#{deptName} where deptnum=#{deptNum}
+	</update>
 	
 	<!-- 직위관리 -->
 	<insert id="ppInsert" parameterType="string">
@@ -112,6 +115,9 @@
 	<delete id="ppDelete" parameterType="int">
 		delete from position where ppnum=${ppnum}
 	</delete>
+	<update id="updatePosition" parameterType="hashmap">
+		update position set ppname=#{ppName} where ppnum=#{ppNum}
+	</update>
 	
 	<!-- 기본급관리 -->
 	<select id="getBasepay" resultType="Payfor" parameterType="hashmap">

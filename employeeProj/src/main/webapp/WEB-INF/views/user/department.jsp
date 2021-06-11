@@ -52,7 +52,12 @@
 		<tr>
 			<td>${dept.deptNum }</td>
 			<td>${dept.deptName }</td>
-			<td><a href="">수정</a></td>
+			<td>
+				<span class="updateButton">수정</span>
+				<input type="text" class="newDeptName" style="display: none;">
+				<button class="updateDept" style="display: none;">확인</button>
+				<input type="hidden" id="update" value="${update }">
+			</td>
 			<td>
 				<a href="${cp }/deptDelete?deptNum=${dept.deptNum}">삭제</a>
 				<input type="hidden" id="delete" value="${delete }">
@@ -65,8 +70,16 @@
 </body>
 <script type="text/javascript">
 $(document).ready(function(){
+	function getContextPath() {
+		var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+		return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+	};
+	
 	if($('#result').val()=='failed'){
 		alert("부서 추가에 실패했습니다. 중복을 확인해주세요.");
+	}
+	if($('#update').val()=='failed'){
+		alert("부서 수정에 실패했습니다. 중복을 확인해주세요.");
 	}
 	if($('#delete').val()=='failed'){
 		alert("부서 삭제에 실패했습니다. 해당 부서에 소속된 직원명단이 존재합니다.");
@@ -80,6 +93,25 @@ $(document).ready(function(){
 			alert("부서명을 입력해주세요");
 			return false;
 		}
+	});
+	
+	$('.updateButton').hover(function(){
+		$(this).css('color','blue');
+	},function(){
+		$(this).css('color','black');
+	});
+	
+	$('.updateButton').click(function(){
+		$(this).next().toggle();
+		$(this).next().next().toggle();
+	});
+	
+	$('.updateDept').click(function(){
+		console.log($(this).parent().prev().prev().text());
+		var deptNum=$(this).parent().prev().prev().text();
+		var newName=$(this).prev().val();
+		
+		location.href=getContextPath()+"/updateDept?deptNum="+deptNum+"&deptName="+newName;
 	});
 });
 </script>

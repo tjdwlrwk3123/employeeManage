@@ -26,4 +26,7 @@ public class DepartmentService {
 	public int deptDelete(int deptNum) {
 		return ddao.deptDelete(deptNum);
 	}
+	public int updateDept(HashMap<String, Object> map) {
+		return ddao.updateDept(map);
+	}
 }

@@ -1,5 +1,6 @@
 package com.yang.empl.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,23 @@ public class PositionController {
 		}catch(Exception e) {
 			e.printStackTrace();
 			ra.addFlashAttribute("delete", "idk");
+			return "redirect:position";
+		}
+	}
+	
+	@RequestMapping("/updatePosition")
+	public String updatePosition(int ppNum,String ppName,RedirectAttributes ra) {
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("ppNum", ppNum);
+		map.put("ppName", ppName);
+		
+		try {
+			pService.updatePosition(map);
+			ra.addFlashAttribute("update", "success");
+			return "redirect:position";
+		}catch(Exception e) {
+			System.out.println("에러발생");
+			ra.addFlashAttribute("update", "failed");
 			return "redirect:position";
 		}
 	}

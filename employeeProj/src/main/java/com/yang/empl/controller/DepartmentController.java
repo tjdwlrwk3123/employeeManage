@@ -1,5 +1,6 @@
 package com.yang.empl.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,22 @@ public class DepartmentController {
 		}catch(Exception e) {
 			e.printStackTrace();
 			ra.addFlashAttribute("delete", "idk");
+			return "redirect:department";
+		}
+	}
+	
+	@RequestMapping("/updateDept")
+	public String updateDept(int deptNum,String deptName,RedirectAttributes ra) {
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("deptNum", deptNum);
+		map.put("deptName", deptName);
+		try {
+			dService.updateDept(map);
+			ra.addFlashAttribute("update", "success");
+			return "redirect:department";
+		}catch(Exception e) {
+			System.out.println("에러발생");
+			ra.addFlashAttribute("update", "failed");
 			return "redirect:department";
 		}
 	}

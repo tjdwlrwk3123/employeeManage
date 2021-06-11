@@ -60,9 +60,6 @@ public class RegionController {
 	
 	@RequestMapping("/updateRegion")
 	public String updateRegion(int regionNum,String regionName,RedirectAttributes ra) {
-		System.out.println("들어옴");
-		System.out.println(regionNum);
-		System.out.println(regionName);
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		map.put("regionnum", regionNum);
 		map.put("regionname", regionName);

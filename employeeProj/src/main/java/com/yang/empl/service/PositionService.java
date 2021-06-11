@@ -26,4 +26,7 @@ public class PositionService {
 	public int ppDelete(int ppNum) {
 		return pdao.ppDelete(ppNum);
 	}
+	public int updatePosition(HashMap<String, Object> map) {
+		return pdao.updatePosition(map);
+	}
 }

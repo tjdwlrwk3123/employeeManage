@@ -27,4 +27,7 @@ public class DepartmentDao {
 	public int deptDelete(int deptNum) {
 		return sqlSession.delete(NAMESPACE+".deptDelete", deptNum);
 	}
+	public int updateDept(HashMap<String,Object> map) {
+		return sqlSession.update(NAMESPACE+".updateDept", map);
+	}
 }

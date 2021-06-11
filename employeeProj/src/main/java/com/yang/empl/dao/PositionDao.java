@@ -28,4 +28,7 @@ public class PositionDao {
 	public int ppDelete(int ppNum) {
 		return sqlSession.delete(NAMESPACE+".ppDelete", ppNum);
 	}
+	public int updatePosition(HashMap<String, Object> map) {
+		return sqlSession.update(NAMESPACE+".updatePosition", map);
+	}
 }
