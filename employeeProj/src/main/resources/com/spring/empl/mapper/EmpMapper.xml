@@ -169,4 +169,7 @@
 		when not matched then
 			insert values(img_seq.nextval,#{empnum},#{img})
 	</insert>
+	<select id="getPhoto" parameterType="int" resultType="ImageVo">
+		select * from imgtable where empnum=#{empnum}
+	</select>
 </mapper>

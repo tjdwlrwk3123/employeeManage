@@ -19,6 +19,27 @@
 #employManage {width:1900px; height: 800px;}
 #employManage table{width:1900px; text-align: center;}
 
+/* 팝업으로 뜨는 윈도우 css  */ 
+#mask {  
+    position:absolute;  
+    z-index:9000;  
+    background-color:#000;  
+    display:none;  
+    left:0;
+    top:0;
+}
+.photoPopup{
+	display: none;
+	position:absolute;
+	left:65%;
+	top:200px;
+	margin-left: -500px;
+	width:400px;
+	height:550px;
+	background-color:#FFF;
+	z-index:10000;   
+}
+
 </style>
 <body>
 <h1>직원관리 v1.0</h1>
@@ -35,6 +56,7 @@
 </div>
 <br>
 <br>
+<div id="mask"></div>
 <div id="employManage">
 	<table class="table">
 		<tr>
@@ -59,7 +81,10 @@
 		<tr>
 			<td>${emp.empNum }</td>
 			<td>${emp.userId }</td>
-			<td>${emp.empName }<button>사진</button></td>
+			<td>
+				${emp.empName }
+				<button class="showPhoto">사진</button>
+			</td>
 			<td>${emp.empBirth }</td>
 			<td>
 				<c:choose>
@@ -91,6 +116,8 @@
 		</tr>
 		</c:forEach>
 	</table>
+</div>
+<div class="photoPopup">
 </div>
 <div id="paging">
 	<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }" >
@@ -126,6 +153,35 @@
 </div>
 </body>
 <script type="text/javascript">
+function wrapWindowByMask(empnum){
+	 
+    //화면의 높이와 너비를 구한다.
+    var maskHeight = $(document).height();  
+    var maskWidth = $(window).width();  
+
+    //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
+    $("#mask").css({"width":maskWidth,"height":maskHeight});  
+
+    //애니메이션 효과 - 일단 0초동안 까맣게 됐다가 60% 불투명도로 간다.
+
+    $("#mask").fadeIn(0);      
+    $("#mask").fadeTo("slow",0.6);    
+
+    $('.photoPopup').empty();
+    
+    $.getJSON('${cp}/getPhoto?empnum='+empnum,function(data){
+    	if(data!=null){
+    		content='<img src="${cp }/resources/imgFolder/'+data.img+'" style="width: 400px; height: 550px;">';
+    	}
+    	$('.photoPopup').prepend(content);
+    	
+    });
+    
+	//모달창 띄우기
+    $(".photoPopup").show();
+
+}
+
 $(document).ready(function(){
 	$('#search').on('change',function(){
 		console.log($(this).val());
@@ -186,6 +242,19 @@ $(document).ready(function(){
 	}else if($('.insertImg').val()=='failed'){
 		alert("사진 등록에 실패했습니다");
 	}
+	
+	$('.showPhoto').click(function(e){
+		var empnum=$(this).parent().prev().prev().text();
+		console.log(empnum);
+		wrapWindowByMask(empnum);
+	});    
+
+    //검은 막을 눌렀을 때
+    $('#mask').click(function () {  
+        $(this).hide();
+        $('.photoPopup').hide();
+    });
+	
 });
 </script>
 </html>

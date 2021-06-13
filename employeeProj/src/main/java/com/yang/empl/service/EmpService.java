@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yang.empl.dao.EmpDao;
 import com.yang.empl.vo.DepartmentVo;
 import com.yang.empl.vo.EmpListVo;
+import com.yang.empl.vo.ImageVo;
 import com.yang.empl.vo.PayforVo;
 import com.yang.empl.vo.PositionVo;
 import com.yang.empl.vo.RegionVo;
@@ -89,5 +90,9 @@ public class EmpService {
 	//사진 추가
 	public int insertPhoto(HashMap<String, Object> map) {
 		return edao.insertPhoto(map);
+	}
+	//사진조회
+	public ImageVo getPhoto(int empnum) {
+		return edao.getPhoto(empnum);
 	}
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.yang.empl.vo.DepartmentVo;
 import com.yang.empl.vo.EmpListVo;
+import com.yang.empl.vo.ImageVo;
 import com.yang.empl.vo.PayforVo;
 import com.yang.empl.vo.PositionVo;
 import com.yang.empl.vo.RegionVo;
@@ -48,7 +49,11 @@ public class EmpDao {
 	public int deletePhoto(int empNum) {
 		return sqlSession.delete(NAMESPACE+".deletePhoto", empNum);
 	}
+	//이미지 추가,조회
 	public int insertPhoto(HashMap<String, Object> map) {
 		return sqlSession.insert(NAMESPACE+".insertPhoto", map);
+	}
+	public ImageVo getPhoto(int empnum) {
+		return sqlSession.selectOne(NAMESPACE+".getPhoto", empnum);
 	}
 }

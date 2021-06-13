@@ -28,6 +28,7 @@ import com.yang.empl.service.RegionService;
 import com.yang.empl.util.PageUtil;
 import com.yang.empl.vo.DepartmentVo;
 import com.yang.empl.vo.EmpListVo;
+import com.yang.empl.vo.ImageVo;
 import com.yang.empl.vo.PositionVo;
 import com.yang.empl.vo.RegionVo;
 
@@ -168,5 +169,10 @@ public class ListController {
 			ra.addFlashAttribute("insertImg", "failed");
 			return "redirect:/list";
 		}
+	}
+	@RequestMapping(produces = {MediaType.APPLICATION_JSON_UTF8_VALUE},value="getPhoto")
+	@ResponseBody
+	public ImageVo getPhoto(int empnum) {
+		return eService.getPhoto(empnum);
 	}
 }
