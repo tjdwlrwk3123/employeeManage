@@ -33,6 +33,12 @@ public class EmpDao {
 	public List<EmpListVo> getEmployee(HashMap<String, Object> map){
 		return sqlSession.selectList(NAMESPACE+".getEmployee",map);
 	}
+	public EmpListVo getEmpOne(int empnum) {
+		return sqlSession.selectOne(NAMESPACE+".getEmpOne",empnum);
+	}
+	public int updateEmp(HashMap<String, Object> map) {
+		return sqlSession.update(NAMESPACE+".updateEmp", map);
+	}
 	public int countEmp(HashMap<String, Object> map) {
 		return sqlSession.selectOne(NAMESPACE+".countEmp",map);
 	}

@@ -34,45 +34,77 @@
 </div>
 <br>
 <br>
-<form action="empInsert" method="post" id="empInsert">
+<form action="updateEmp" method="post" id="updateEmp">
 	<div id="form">
+		<div>wlrdnjsqjsgh</div>
+		<div>${emp.empNum }</div>
+		<input type="hidden" name="empNum" value=${emp.empNum }>
 		<div>이름:</div>
-		<input type="text" name="name" id="name" placeholder="이름(30자 이내)">
+		<input type="text" name="name" id="name" value=${emp.empName }>
 		<div>생년월일:</div>
-		<input type="text" name="birth" id="dp" readonly="readonly" placeholder="생년월일(YYYY-MM-DD)">
+		<input type="text" name="birth" id="dp" readonly="readonly" placeholder="생년월일(YYYY-MM-DD)" value="${emp.empBirth }">
 		<div>양/음력:</div>
-		<input type="radio" name="sollun" value="1">양력
-		<input type="radio" name="sollun" value="2">음력
+		<c:choose>
+			<c:when test="${emp.solarlunar == 1 }">
+				<input type="radio" name="sollun" value="1" checked="checked">양력
+				<input type="radio" name="sollun" value="2">음력
+			</c:when>
+			<c:otherwise>
+				<input type="radio" name="sollun" value="1">양력
+				<input type="radio" name="sollun" value="2" checked="checked">음력
+			</c:otherwise>
+		</c:choose>
 		<label>(체크하지 않을 시 양력으로 처리합니다.)</label>
 		<div>연락처:</div>
-		<input type="text" name="phone" id="phone" placeholder="전화번호(-는 생략)">
+		<input type="text" name="phone" id="phone" placeholder="전화번호(-는 생략)" value="${emp.contactAdress }">
 		<div>지역:</div>
 		<select name="region" class="form-control">
 			<c:forEach var="reg" items="${regList }">
-				<option value="${reg.regionNum }">${reg.regionName }</option>
+				<c:choose>
+					<c:when test="${emp.regionNum == reg.regionNum }">
+						<option value="${reg.regionNum }" selected="selected">${reg.regionName }</option>
+					</c:when>
+					<c:otherwise>
+						<option value="${reg.regionNum }">${reg.regionName }</option>
+					</c:otherwise>
+				</c:choose>
 			</c:forEach>
 		</select>
 		<div>입사일:</div>
-		<input type="text" id="dp2" name="joining" readonly="readonly">
+		<input type="text" id="dp2" name="joining" readonly="readonly" value="${emp.joinday }">
 		<div>부서:</div>
 		<select id="dept" name="department" class="form-control">
-			<c:forEach var="dept" items="${deptList }"> 
-				<option value="${dept.deptNum }">${dept.deptName }</option>
+			<c:forEach var="dept" items="${deptList }">
+				<c:choose>
+					<c:when test="${emp.deptNum == dept.deptNum }">
+						<option value="${dept.deptNum }" selected="selected">${dept.deptName }</option>
+					</c:when>
+					<c:otherwise>
+						<option value="${dept.deptNum }">${dept.deptName }</option>
+					</c:otherwise>
+				</c:choose>
 			</c:forEach>
 		</select>
 		<div>직위:</div>
 		<select id="posi" name="position" class="form-control">
 			<c:forEach var="posi" items="${posiList }">
-				<option value="${posi.ppNum }">${posi.ppName }</option>
+				<c:choose>
+					<c:when test="${emp.ppNum == posi.ppNum }">
+						<option value="${posi.ppNum }" selected="selected">${posi.ppName }</option>
+					</c:when>
+					<c:otherwise>
+						<option value="${posi.ppNum }">${posi.ppName }</option>
+					</c:otherwise>
+				</c:choose>
 			</c:forEach>
 		</select>
 		<div>기본급:</div>
-		<input type="text" id="basepay" name="basepay" placeholder="기본급">
+		<input type="text" id="basepay" name="basepay" placeholder="기본급" value="${emp.basepay }">
 		<div>수당:</div>
-		<input type="text" name="bonus" id="bonus" placeholder="수당">
+		<input type="text" name="bonus" id="bonus" placeholder="수당" value="${emp.bonus }">
 	</div>
 	<div id="submit">
-		<button class="btn btn-default">추가</button>
+		<button class="btn btn-default">update</button>
 	</div>
 </form>
 <input type="hidden" id="result" value="${failed }">
@@ -81,7 +113,7 @@
 $(document).ready(function() {
 	
 	if($("#result").val()=='failed'){
-		alert('직원 생성에 실패했습니다.');
+		alert('직원 update에 실패했습니다.');
 	}
 	
 	$('#dept').on('change',function(){
@@ -106,7 +138,7 @@ $(document).ready(function() {
 		monthNamesShort:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 		yearSuffix:"년",
 		minDate : '-100y',
-		yearRange : 'c-100:c+100',
+		yearRange : 'c-100:c+10',
 		showMonthAfterYear:true,
 		showAnim : 'toggle',
 		changeMonth : 'true',
@@ -119,7 +151,7 @@ $(document).ready(function() {
 		monthNamesShort:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 		yearSuffix:"년",
 		minDate : '-100y',
-		yearRange : 'c-100:c+100',
+		yearRange : 'c-100:c+3',
 		showMonthAfterYear:true,
 		showAnim : 'toggle',
 		changeMonth : 'true',

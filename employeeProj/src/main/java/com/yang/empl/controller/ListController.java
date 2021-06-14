@@ -55,8 +55,6 @@ public class ListController {
 		
 		
 		if(keyword!=null && !keyword.equals("")) {
-			System.out.println(search);
-			System.out.println(keyword);
 			searchMap.put("search", search);
 			searchMap.put("keyword", keyword);
 			model.addAttribute("search", search);
@@ -66,7 +64,6 @@ public class ListController {
 			if(sort.equals("totalpay")) {
 				sort="basepay+bonus";
 			}
-			System.out.println(sort);
 			searchMap.put("sort", sort);
 		}
 		
@@ -147,11 +144,8 @@ public class ListController {
 	public String insertPhoto(@RequestParam(value = "photo")MultipartFile photo, int empNum,RedirectAttributes ra) {
 		
 		String realPath=sc.getRealPath("/resources/imgFolder");
-		System.out.println(realPath);
 		String filename=photo.getOriginalFilename();
 		HashMap<String, Object> map=new HashMap<String, Object>();
-		System.out.println(empNum);
-		System.out.println(filename);
 		map.put("empnum", empNum);
 		map.put("img", filename);
 		

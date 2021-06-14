@@ -52,6 +52,15 @@
 		</choose>
 	</select>
 	
+	<select id="getEmpOne" parameterType="int" resultType="Employee">
+		select * from emplist where empnum=#{empnum}
+	</select>
+	<update id="updateEmp" parameterType="hashmap">
+		update emplist set empname=#{empname},ppnum=#{ppnum},deptnum=#{deptnum},empbirth=#{empbirth},
+		solarlunar=#{sollun},regionnum=#{regionnum},contactadress=#{phonenum},basepay=#{basepay},bonus=#{bonus},
+		joindate=#{joinday} where empnum=#{empnum}
+	</update>
+	
 	<!-- 직원삭제(아이디,권한삭제까지) -->
 	<delete id="deleteEmp" parameterType="string">
 		delete from emplist where userid=#{userid}
