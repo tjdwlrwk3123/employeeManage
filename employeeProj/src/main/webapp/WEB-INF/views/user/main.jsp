@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <script type="text/javascript" src="/empl/resources/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="/empl/resources/printThis.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style>
 
@@ -149,7 +150,7 @@
 </div>
 <div id="addfunc">
 	<a href="insertForm" class="btn btn-primary">직원추가</a>
-	<a href="#" class="btn btn-primary">직원출력</a>
+	<a href="javascript:printEmp()" class="btn btn-primary">직원출력</a>
 </div>
 </body>
 <script type="text/javascript">
@@ -180,6 +181,12 @@ function wrapWindowByMask(empnum){
 	//모달창 띄우기
     $(".photoPopup").show();
 
+}
+
+function printEmp(){
+	$('#employManage').printThis({
+		importCSS:true
+	});
 }
 
 $(document).ready(function(){
