@@ -10,7 +10,7 @@
 </head>
 <script type="text/javascript" src="/empl/resources/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="/empl/resources/printThis.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <style>
 
 
@@ -59,7 +59,7 @@
 <br>
 <div id="mask"></div>
 <div id="employManage">
-	<table class="table">
+	<table class="table" id="empTable">
 		<tr>
 			<th><a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}" style="color:blue; text-decoration: none;">번호</a></th>
 			<th><a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=userid" style="color:blue; text-decoration: none;">아이디</a></th>
@@ -152,6 +152,8 @@
 	<a href="insertForm" class="btn btn-primary">직원추가</a>
 	<a href="javascript:printEmp()" class="btn btn-primary">직원출력</a>
 </div>
+
+<div id="printArea"></div>
 </body>
 <script type="text/javascript">
 function wrapWindowByMask(empnum){
@@ -184,7 +186,21 @@ function wrapWindowByMask(empnum){
 }
 
 function printEmp(){
-	$('#employManage').printThis({
+	
+	$('#printArea').append($('#empTable').clone()); //새로운 영역에 테이블을 옮기기(수정,삭제 등등 열 삭제 위해)
+	
+	$('#printArea th:last').remove(); //마지막으로부터 3개 행 삭제(사진등록,수정,삭제부분)
+	$('#printArea th:last').remove();
+	$('#printArea th:last').remove();
+	
+	$('#printArea tr td:last-child').remove(); //마지막으로부터 3개 열 삭제(사진등록,수정,삭제)
+	$('#printArea tr td:last-child').remove();
+	$('#printArea tr td:last-child').remove();
+	
+	$('#printArea td button').remove(); //사진보기 버튼 삭제
+	
+	
+	$('#printArea').printThis({
 		importCSS:true
 	});
 }
