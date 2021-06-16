@@ -187,6 +187,7 @@ function wrapWindowByMask(empnum){
 
 function printEmp(){
 	
+	$('#printArea').empty();
 	$('#printArea').append($('#empTable').clone()); //새로운 영역에 테이블을 옮기기(수정,삭제 등등 열 삭제 위해)
 	
 	$('#printArea th:last').remove(); //마지막으로부터 3개 행 삭제(사진등록,수정,삭제부분)
@@ -201,8 +202,13 @@ function printEmp(){
 	
 	
 	$('#printArea').printThis({
-		importCSS:true
+		importCSS:true,
+		afterPrint:function(){
+			$('#printArea').empty();
+		}			
 	});
+	
+	
 }
 
 $(document).ready(function(){
