@@ -16,7 +16,7 @@
 		<typeAlias type="com.yang.empl.vo.EmpListVo" alias="Employee"/>
 		<typeAlias type="com.yang.empl.vo.PayDeptPositionJoinVo" alias="PDPJoin"/>
 		<typeAlias type="com.yang.empl.vo.ImageVo" alias="ImageVo"/>
-		<typeAlias type="com.yang.empl.vo.UserinfoVo" alias="UserinfoVo"/>
+		<typeAlias type="com.yang.empl.vo.UserInfoVo" alias="UserInfoVo"/>
 	</typeAliases>
 	
 	<mappers>

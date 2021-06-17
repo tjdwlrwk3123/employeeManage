@@ -183,7 +183,7 @@
 	</select>
 	
 	<!-- 암호화/복호화/로그인 -->
-	<select id="getUserinfo" parameterType="string" resultType="UserinfoVo">
-		select * from userinfo where userid=#{userid)
+	<select id="getUserinfo" parameterType="string" resultType="UserInfoVo">
+		select * from userinfo where userid=#{userid}
 	</select>
 </mapper>

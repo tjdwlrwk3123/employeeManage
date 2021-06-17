@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yang.empl.service.LoginService;
 
@@ -28,23 +29,27 @@ public class LoginController {
 	@RequestMapping(value="/login/loginSubmit")
 	public String submit(Model model, @RequestParam(value="id") String id
 			, @RequestParam(value="password") String password
-			, HttpSession session) {
+			, HttpSession session
+			, RedirectAttributes ra) {
 		try {
 			if(lService.getUserinfo(id).getChangePassword()==0) {
 				if(password.equals(lService.getUserinfo(id).getUserPassword())) {
+					System.out.println(lService.getUserinfo(id).getUserId());
+					System.out.println(password);
+					System.out.println(lService.getUserinfo(id).getUserPassword());
 					session.setAttribute("userid", id);
-					return "/user/main";
+					return "redirect:/list";
 				}else {
-					model.addAttribute("result", "notEqual");
+					ra.addFlashAttribute("result", "notEqual");
 					return "redirect:/login/loginForm";
 				}
 			}else{
-				model.addAttribute("result", "bycrypt");
+				ra.addFlashAttribute("result", "bycrypt");
 				return "redirect:/login/loginForm";
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			model.addAttribute("result", "failed");
+			ra.addFlashAttribute("result", "noId");
 			return "redirect:/login/loginForm";
 		}
 	}
