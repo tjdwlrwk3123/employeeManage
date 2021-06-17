@@ -15,5 +15,8 @@ h1 {text-align: center;}
 <div id="joindiv">
 <a href="list"><img id="joinEmp" src="${cp }/resources/imgFolder/join.png"></a>
 </div>
+<div id="loginDiv" style="text-align: center;">
+<a href="${cp }/login/loginForm">로그인</a>
+</div>
 </body>
 </html>

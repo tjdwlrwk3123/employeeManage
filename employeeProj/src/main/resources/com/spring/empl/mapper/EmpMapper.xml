@@ -9,7 +9,7 @@
 		select idnum.nextval from dual
 	</select>
 	<insert id="userInsert" parameterType="hashmap">
-		insert into userinfo values(#{userid},#{userpassword},0)
+		insert into userinfo values(#{userid},#{userpassword},0,0)
 	</insert>
 	<insert id="empInsert" parameterType="hashmap">
 		insert into emplist values((select nvl(max(empnum)+1,1) from emplist),#{userid},
@@ -180,5 +180,10 @@
 	</insert>
 	<select id="getPhoto" parameterType="int" resultType="ImageVo">
 		select * from imgtable where empnum=#{empnum}
+	</select>
+	
+	<!-- 암호화/복호화/로그인 -->
+	<select id="getUserinfo" parameterType="string" resultType="UserinfoVo">
+		select * from userinfo where userid=#{userid)
 	</select>
 </mapper>

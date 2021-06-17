@@ -40,7 +40,7 @@ public class InsertEmpController {
 	@Autowired
 	private PositionService pService;
 	
-	@RequestMapping(method = RequestMethod.GET, value="insertForm")
+	@RequestMapping(method = RequestMethod.GET, value="admin/insertForm")
 	public String goInsertForm(Model model) {
 		//빈 해시맵 생성
 		
@@ -55,7 +55,7 @@ public class InsertEmpController {
 		return "/admin/empInsert";
 	}
 	
-	@RequestMapping(value="empInsert")
+	@RequestMapping(value="admin/empInsert")
 	public String empInsert(String name, Date birth, 
 			@RequestParam(defaultValue = "1") int sollun, String phone,
 			String region, String department, String position, int basepay, 

@@ -149,7 +149,7 @@
 	</form>
 </div>
 <div id="addfunc">
-	<a href="insertForm" class="btn btn-primary">직원추가</a>
+	<a href="admin/insertForm" class="btn btn-primary">직원추가</a>
 	<a href="javascript:printEmp()" class="btn btn-primary">직원출력</a>
 </div>
 

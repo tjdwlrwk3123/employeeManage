@@ -4,11 +4,13 @@ public class UserInfoVo {
 	private String userId;
 	private String userPassword;
 	private int enabled;
-	public UserInfoVo(String userId, String userPassword, int enabled) {
+	private int changePassword;
+	public UserInfoVo(String userId, String userPassword, int enabled, int changePassword) {
 		super();
 		this.userId = userId;
 		this.userPassword = userPassword;
 		this.enabled = enabled;
+		this.changePassword = changePassword;
 	}
 	public String getUserId() {
 		return userId;
@@ -27,5 +29,11 @@ public class UserInfoVo {
 	}
 	public void setEnabled(int enabled) {
 		this.enabled = enabled;
+	}
+	public int getChangePassword() {
+		return changePassword;
+	}
+	public void setChangePassword(int changePassword) {
+		this.changePassword = changePassword;
 	}
 }
