@@ -1,6 +1,7 @@
 package com.yang.empl.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,8 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpServletRequest hr) {
-		hr.getSession().setAttribute("cp", hr.getContextPath());
+		String cp=hr.getContextPath();
+		hr.getSession().getServletContext().setAttribute("cp", cp);
 		return "home";
 	}
 	

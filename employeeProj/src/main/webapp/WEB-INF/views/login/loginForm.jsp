@@ -10,7 +10,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <body>
 <h1>로그인하기</h1>
-<form action="${cp }/login/loginSubmit" method="post">
+<form action="${pageContext.request.contextPath }/login/loginSubmit" method="post">
 	<input type="text" id="id" name="id"><br>
 	<input type="password" id="password" name="password"><br>
 	<input type="submit" value="로그인">

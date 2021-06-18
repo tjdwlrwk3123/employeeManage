@@ -15,4 +15,7 @@ public class LoginDao {
 	public UserInfoVo getUserinfo(String userid) {
 		return sqlSession.selectOne(NAMESPACE+".getUserinfo", userid);
 	}
+	public int changeActive(String userid) {
+		return sqlSession.update(NAMESPACE+".changeActive", userid);
+	}
 }

@@ -1,5 +1,6 @@
 package com.yang.empl.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ public class LoginController {
 					System.out.println(lService.getUserinfo(id).getUserId());
 					System.out.println(password);
 					System.out.println(lService.getUserinfo(id).getUserPassword());
+					lService.changeActive(id);
 					session.setAttribute("userid", id);
 					return "redirect:/list";
 				}else {
@@ -52,5 +54,13 @@ public class LoginController {
 			ra.addFlashAttribute("result", "noId");
 			return "redirect:/login/loginForm";
 		}
+	}
+	@RequestMapping("/login/logout")
+	public String logout(HttpSession session,HttpServletRequest hr) {
+		String userid=(String)session.getAttribute("userid");
+		lService.changeActive(userid);
+		session.invalidate();
+		String referer=hr.getHeader("Referer");
+		return "redirect:"+referer;
 	}
 }

@@ -14,4 +14,7 @@ public class LoginService {
 	public UserInfoVo getUserinfo(String userid) {
 		return ldao.getUserinfo(userid);
 	}
+	public int changeActive(String userid) {
+		return ldao.changeActive(userid);
+	}
 }
