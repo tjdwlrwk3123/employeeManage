@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yang.empl.service.LoginService;
+import com.yang.empl.vo.UserInfoVo;
 
 @Controller
 public class LoginController {
@@ -63,4 +64,16 @@ public class LoginController {
 		String referer=hr.getHeader("Referer");
 		return "redirect:"+referer;
 	}
+	
+	@RequestMapping("/login/changeForm")
+	public String changeForm() {
+		return "/login/changeForm";
+	}
+	@RequestMapping("/login/changePassword")
+	public String changePassword(HttpSession session,String oldP,String newP) {
+		String userid=(String)session.getAttribute("userid");
+		
+		return null;
+	}
+	
 }

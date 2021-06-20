@@ -43,7 +43,7 @@
 
 </style>
 <body>
-<h1>직원관리 v1.0</h1>
+<h1><a href="${cp }/">직원관리 v1.0</a></h1>
 <br>
 <div id="manageList">
 	<ul>
