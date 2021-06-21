@@ -1,5 +1,6 @@
 package com.yang.empl.service;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -95,7 +96,20 @@ public class EmpService {
 	}
 	//사진 추가
 	public int insertPhoto(HashMap<String, Object> map) {
-		return edao.insertPhoto(map);
+		int empNum=(int)map.get("empnum");
+		ImageVo vo=edao.getPhoto(empNum);
+		//기존파일이 있는경우 삭제후 등록
+		try {
+			String imgname=vo.getImg();
+			String filename="C:\\Java\\STS\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\employeeProj\\resources\\imgFolder\\"+imgname;
+			File file=new File(filename);
+			file.delete();
+			return edao.insertPhoto(map);
+		//기존파일이 없는경우(널포인터 에러가 날 경우)그냥 등록
+		}catch(NullPointerException ne) {
+			System.out.println("기존 파일 없음");
+			return edao.insertPhoto(map);
+		}
 	}
 	//사진조회
 	public ImageVo getPhoto(int empnum) {

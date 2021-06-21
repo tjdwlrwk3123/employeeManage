@@ -144,6 +144,7 @@ public class ListController {
 	public String insertPhoto(@RequestParam(value = "photo")MultipartFile photo, int empNum,RedirectAttributes ra) {
 		
 		String realPath=sc.getRealPath("/resources/imgFolder");
+		System.out.println(realPath);
 		String filename=photo.getOriginalFilename();
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		map.put("empnum", empNum);
