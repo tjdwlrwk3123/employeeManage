@@ -186,12 +186,16 @@
 	<select id="getUserinfo" parameterType="string" resultType="UserInfoVo">
 		select * from userinfo where userid=#{userid}
 	</select>
-	<update id="changeActive" parameterType="string">
-		update userinfo set enabled=
-		case 
-		when enabled=0 then 1
-		when enabled=1 then 0
-		end
+	<update id="changeActiveLogin" parameterType="string">
+		update userinfo set enabled=1
+		where userid=#{userid}
+	</update>
+	<update id="changeActiveLogout" parameterType="string">
+		update userinfo set enabled=0
+		where userid=#{userid}
+	</update>
+	<update id="changePassword" parameterType="hashmap">
+		update userinfo set userpassword=#{password}, changepassword=1
 		where userid=#{userid}
 	</update>
 </mapper>

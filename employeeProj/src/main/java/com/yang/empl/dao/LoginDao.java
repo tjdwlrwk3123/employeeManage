@@ -1,5 +1,7 @@
 package com.yang.empl.dao;
 
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,7 +17,13 @@ public class LoginDao {
 	public UserInfoVo getUserinfo(String userid) {
 		return sqlSession.selectOne(NAMESPACE+".getUserinfo", userid);
 	}
-	public int changeActive(String userid) {
-		return sqlSession.update(NAMESPACE+".changeActive", userid);
+	public int changeActiveLogin(String userid) {
+		return sqlSession.update(NAMESPACE+".changeActiveLogin", userid);
+	}
+	public int changeActiveLogout(String userid) {
+		return sqlSession.update(NAMESPACE+".changeActiveLogout", userid);
+	}
+	public int changePassword(HashMap<String, Object> map) {
+		return sqlSession.update(NAMESPACE+".changePassword", map);
 	}
 }

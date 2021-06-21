@@ -10,13 +10,16 @@
 <script type="text/javascript" src="/empl/resources/jquery-3.5.1.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <style>
-
+h1 a{
+	text-decoration: none;
+	color: black;
+}
 #manageList ul{list-style: none;}
 #manageList ul li{float: left; width: 300px;}
 
 </style>
 <body>
-<h1>직원관리 v1.0</h1>
+<h1><a href="${pageContext.request.contextPath}/">직원관리 v1.0</a></h1>
 <br>
 <div id="manageList">
 	<ul>
@@ -66,7 +69,7 @@
 				<input type="hidden" id="update" value="${update }">
 			</td>
 			<td>
-				<a href="${cp }/ppDelete?ppNum=${pp.ppNum}">삭제</a>
+				<a href="${pageContext.request.contextPath}/ppDelete?ppNum=${pp.ppNum}">삭제</a>
 				<input type="hidden" id="delete" value="${delete }">
 			</td>
 		</tr>

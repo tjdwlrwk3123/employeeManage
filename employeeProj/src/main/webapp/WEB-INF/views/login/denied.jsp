@@ -8,6 +8,6 @@
 </head>
 <body>
 <h1>관리자로 로그인하셔야 합니다.</h1>
-<a href="${cp }">홈으로</a>
+<a href="${pageContext.request.contextPath}/">홈으로</a>
 </body>
 </html>

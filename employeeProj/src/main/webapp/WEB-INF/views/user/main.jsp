@@ -13,6 +13,10 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <style>
 
+h1 a{
+	text-decoration: none;
+	color: black;
+}
 
 #manageList ul{list-style: none;}
 #manageList ul li{float: left; width: 300px;}
@@ -43,7 +47,7 @@
 
 </style>
 <body>
-<h1><a href="${cp }/">직원관리 v1.0</a></h1>
+<h1><a href="${pageContext.request.contextPath}/">직원관리 v1.0</a></h1>
 <br>
 <div id="manageList">
 	<ul>
@@ -68,19 +72,19 @@
 <div id="employManage">
 	<table class="table" id="empTable">
 		<tr>
-			<th><a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}" style="color:blue; text-decoration: none;">번호</a></th>
-			<th><a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=userid" style="color:blue; text-decoration: none;">아이디</a></th>
+			<th><a href="${pageContext.request.contextPath}/list?keyword=${keyword}&search=${search}&pageNum=${i}" style="color:blue; text-decoration: none;">번호</a></th>
+			<th><a href="${pageContext.request.contextPath}/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=userid" style="color:blue; text-decoration: none;">아이디</a></th>
 			<th>이름</th>
-			<th><a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=empbirth" style="color:blue; text-decoration: none;">생년월일</a></th>
+			<th><a href="${pageContext.request.contextPath}/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=empbirth" style="color:blue; text-decoration: none;">생년월일</a></th>
 			<th>양/음력</th>
 			<th>전화번호</th>
 			<th>지역명</th>
-			<th><a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=deptnum" style="color:blue; text-decoration: none;">부서명</a></th>
-			<th><a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=ppnum" style="color:blue; text-decoration: none;">직위명</a></th>
-			<th><a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=joindate" style="color:blue; text-decoration: none;">입사일</a></th>
-			<th><a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=basepay" style="color:blue; text-decoration: none;">기본급</a></th>
+			<th><a href="${pageContext.request.contextPath}/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=deptnum" style="color:blue; text-decoration: none;">부서명</a></th>
+			<th><a href="${pageContext.request.contextPath}/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=ppnum" style="color:blue; text-decoration: none;">직위명</a></th>
+			<th><a href="${pageContext.request.contextPath}/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=joindate" style="color:blue; text-decoration: none;">입사일</a></th>
+			<th><a href="${pageContext.request.contextPath}/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=basepay" style="color:blue; text-decoration: none;">기본급</a></th>
 			<th>수당</th>
-			<th><a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=totalpay" style="color:blue; text-decoration: none;">급여</a></th>
+			<th><a href="${pageContext.request.contextPath}/list?keyword=${keyword}&search=${search}&pageNum=${i}&sort=totalpay" style="color:blue; text-decoration: none;">급여</a></th>
 			<th>사진등록</th>
 			<th class="warning">수정</th>
 			<th class="danger">삭제</th>
@@ -109,16 +113,16 @@
 			<td><fmt:formatNumber value="${emp.bonus }" pattern="#,###"/></td>
 			<td><fmt:formatNumber value="${emp.basepay + emp.bonus }" pattern="#,###"/></td>
 			<td>
-				<form action="${cp }/insertPhoto" enctype="multipart/form-data" method="post">
+				<form action="${pageContext.request.contextPath}/insertPhoto" enctype="multipart/form-data" method="post">
 				<input type="hidden" value="${emp.empNum }" name="empNum">
 				<input type="file" name="photo" accept="image/*" style="width: 160px;" required/>
 				<button>등록</button>
 				</form>
 				<input type="hidden" value="${insertImg }" class="insertImg">
 			</td>
-			<td><a href="${cp }/updateForm?empNum=${emp.empNum}">수정</a></td>
+			<td><a href="${pageContext.request.contextPath}/updateForm?empNum=${emp.empNum}">수정</a></td>
 			<td>
-				<a href="${cp }/deleteEmp?userid=${emp.userId }&empNum=${emp.empNum}" onclick="return confirm('직원번호:${emp.empNum} / 이름:${emp.empName }\n삭제하시겠습니까?')">삭제</a>
+				<a href="${pageContext.request.contextPath}/deleteEmp?userid=${emp.userId }&empNum=${emp.empNum}" onclick="return confirm('직원번호:${emp.empNum} / 이름:${emp.empName }\n삭제하시겠습니까?')">삭제</a>
 				<input type="hidden" id="result" value="${result }">
 			</td>
 		</tr>
@@ -131,10 +135,10 @@
 	<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }" >
 		<c:choose>
 			<c:when test="${pu.pageNum==i }">
-				<a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}"><span style="color: blue">[${i }]</span></a>
+				<a href="${pageContext.request.contextPath}/list?keyword=${keyword}&search=${search}&pageNum=${i}"><span style="color: blue">[${i }]</span></a>
 			</c:when>
 			<c:otherwise>
-				<a href="${cp }/list?keyword=${keyword}&search=${search}&pageNum=${i}"><span style="color: gray">[${i }]</span></a>
+				<a href="${pageContext.request.contextPath}/list?keyword=${keyword}&search=${search}&pageNum=${i}"><span style="color: gray">[${i }]</span></a>
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
@@ -179,9 +183,9 @@ function wrapWindowByMask(empnum){
 
     $('.photoPopup').empty();
     
-    $.getJSON('${cp}/getPhoto?empnum='+empnum,function(data){
+    $.getJSON('${pageContext.request.contextPath}/getPhoto?empnum='+empnum,function(data){
     	if(data!=null){
-    		content='<img src="${cp }/resources/imgFolder/'+data.img+'" style="width: 400px; height: 550px;">';
+    		content='<img src="${pageContext.request.contextPath}/resources/imgFolder/'+data.img+'" style="width: 400px; height: 550px;">';
     	}
     	$('.photoPopup').prepend(content);
     	
@@ -224,7 +228,7 @@ $(document).ready(function(){
 		var content='';
 		$('#selectBox').empty();
 		if($(this).val()=='regionnum'){
-			$.getJSON('${cp}/getSelectRegion?keyword='+$(this).val(),function(data){
+			$.getJSON('${pageContext.request.contextPath}/getSelectRegion?keyword='+$(this).val(),function(data){
 				if(data!=null){
 					for(let i=0;i<data.length;i++){
 						content+='<option value="'+data[i].regionNum+'">'+data[i].regionName+'</option>';
@@ -237,7 +241,7 @@ $(document).ready(function(){
 			$('#selectBox').css('display','');
 			$('#selectBox').attr('disabled',false);
 		}else if($(this).val()=='deptnum'){
-			$.getJSON('${cp}/getSelectDept?keyword='+$(this).val(),function(data){
+			$.getJSON('${pageContext.request.contextPath}/getSelectDept?keyword='+$(this).val(),function(data){
 				if(data!=null){
 					for(let i=0;i<data.length;i++){
 						content+='<option value="'+data[i].deptNum+'">'+data[i].deptName+'</option>';
@@ -250,7 +254,7 @@ $(document).ready(function(){
 			$('#selectBox').css('display','');
 			$('#selectBox').attr('disabled',false);
 		}else if($(this).val()=='ppnum'){
-			$.getJSON('${cp}/getSelectPosi?keyword='+$(this).val(),function(data){
+			$.getJSON('${pageContext.request.contextPath}/getSelectPosi?keyword='+$(this).val(),function(data){
 				if(data!=null){
 					for(let i=0;i<data.length;i++){
 						content+='<option value="'+data[i].ppNum+'">'+data[i].ppName+'</option>';

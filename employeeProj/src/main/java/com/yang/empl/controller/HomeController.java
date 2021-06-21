@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(HttpServletRequest hr) {
-		String cp=hr.getContextPath();
-		hr.getSession().getServletContext().setAttribute("cp", cp);
+	public String home() {
 		return "home";
 	}
 	
