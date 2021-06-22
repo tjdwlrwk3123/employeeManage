@@ -4,6 +4,8 @@ public class AuthoritiesVo {
 	private int authNum;
 	private String userId;
 	private String authority;
+	
+	public AuthoritiesVo() {}
 	public AuthoritiesVo(int authNum, String userId, String authority) {
 		super();
 		this.authNum = authNum;

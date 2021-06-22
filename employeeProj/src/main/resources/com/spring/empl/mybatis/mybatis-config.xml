@@ -4,9 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<settings>
-		<setting name="cacheEnabled" value="false"/>
-		<setting name="jdbcTypeForNull" value="NULL"/>
-	</settings>
+    	<setting name="cacheEnabled" value="false" />
+        <setting name="jdbcTypeForNull" value="NULL" />
+    </settings>
 	
 	<typeAliases>
 		<typeAlias type="com.yang.empl.vo.DepartmentVo" alias="Department"/>
@@ -17,6 +17,7 @@
 		<typeAlias type="com.yang.empl.vo.PayDeptPositionJoinVo" alias="PDPJoin"/>
 		<typeAlias type="com.yang.empl.vo.ImageVo" alias="ImageVo"/>
 		<typeAlias type="com.yang.empl.vo.UserInfoVo" alias="UserInfoVo"/>
+		<typeAlias type="com.yang.empl.vo.AuthoritiesVo" alias="Authorities"/>
 	</typeAliases>
 	
 	<mappers>

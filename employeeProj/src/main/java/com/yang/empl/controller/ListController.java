@@ -44,7 +44,7 @@ public class ListController {
 	@Autowired
 	private PositionService pService;
 	
-	@RequestMapping(value="/list")
+	@RequestMapping(value="list")
 	public String join(Model model,
 			@RequestParam(required = false,value = "search") String search,
 			@RequestParam(required = false,value = "keyword") String keyword,

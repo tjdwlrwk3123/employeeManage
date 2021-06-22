@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.yang.empl.security.UserInfoDetail;
+import com.yang.empl.vo.AuthoritiesVo;
 import com.yang.empl.vo.UserInfoVo;
 
 @Repository
@@ -25,5 +27,8 @@ public class LoginDao {
 	}
 	public int changePassword(HashMap<String, Object> map) {
 		return sqlSession.update(NAMESPACE+".changePassword", map);
+	}
+	public UserInfoDetail getAuth(String userid) {
+		return sqlSession.selectOne(NAMESPACE+".getAuth", userid);
 	}
 }

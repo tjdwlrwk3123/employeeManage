@@ -7,6 +7,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.yang.empl.dao.LoginDao;
+import com.yang.empl.security.UserInfoDetail;
+import com.yang.empl.vo.AuthoritiesVo;
 import com.yang.empl.vo.UserInfoVo;
 
 @Service
@@ -30,5 +32,8 @@ public class LoginService {
 		map.put("userid", userid);
 		map.put("password", newP);
 		return ldao.changePassword(map);
+	}
+	public UserInfoDetail getAuth(String userid) {
+		return ldao.getAuth(userid);
 	}
 }

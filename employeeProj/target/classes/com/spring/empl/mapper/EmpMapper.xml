@@ -198,4 +198,22 @@
 		update userinfo set userpassword=#{password}, changepassword=1
 		where userid=#{userid}
 	</update>
+	
+	<!-- 시큐리티 -->
+	<resultMap type="com.yang.empl.security.UserInfoDetail" id="UserInfoDetail">
+		<id property="userId" column="userid"/>
+		<result property="userPassword" column="userpassword"/>
+		<result property="enabled" column="enabled"/>
+		<result property="changePassword" column="changepassword"/>
+		<collection property="authList" ofType="com.yang.empl.vo.AuthoritiesVo">
+			<result property="authNum" column="authnum"/>
+			<result property="userId" column="userid"/>
+			<result property="authority" column="authority"/>
+		</collection>
+	</resultMap>
+	<select id="getAuth" parameterType="string" resultMap="UserInfoDetail">
+		select * from userinfo u join authorities a 
+		on u.userid=a.userid
+		where u.userid=#{userid}
+	</select>
 </mapper>

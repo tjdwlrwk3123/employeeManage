@@ -23,17 +23,17 @@ h1 a{
 <br>
 <div id="manageList">
 	<ul>
-		<li><button class="btn btn-default btn-block" onclick="location.href='list'">직원관리</button></li>
-		<li><button class="btn btn-default btn-block" onclick="location.href='region'">지역관리</button></li>
-		<li><button class="btn btn-info btn-block" onclick="location.href='position'">직위관리</button></li>
-		<li><button class="btn btn-default btn-block" onclick="location.href='department'">부서관리</button></li>
-		<li><button class="btn btn-default btn-block" onclick="location.href='basepay'">기본급관리</button></li>
+		<li><button class="btn btn-default btn-block" onclick="location.href='${pageContext.request.contextPath}/list'">직원관리</button></li>
+		<li><button class="btn btn-default btn-block" onclick="location.href='${pageContext.request.contextPath}/region'">지역관리</button></li>
+		<li><button class="btn btn-info btn-block" onclick="location.href='${pageContext.request.contextPath}/position'">직위관리</button></li>
+		<li><button class="btn btn-default btn-block" onclick="location.href='${pageContext.request.contextPath}/department'">부서관리</button></li>
+		<li><button class="btn btn-default btn-block" onclick="location.href='${pageContext.request.contextPath}/basepay'">기본급관리</button></li>
 		<c:choose>
 			<c:when test="${sessionScope.userid !=null }">
-				<li><button class="btn btn-danger btn-block" onclick="location.href='login/logout'">로그아웃</button></li>
+				<li><button class="btn btn-danger btn-block" onclick="location.href='${pageContext.request.contextPath}/login/logout'">로그아웃</button></li>
 			</c:when>
 			<c:otherwise>
-				<li><button class="btn btn-info btn-block" onclick="location.href='login/loginForm'">로그인</button></li>
+				<li><button class="btn btn-info btn-block" onclick="location.href='${pageContext.request.contextPath}/login/loginForm'">로그인</button></li>
 			</c:otherwise>
 		</c:choose>
 	</ul>
