@@ -8,9 +8,9 @@
 	<bean id="loginSuccessHandler" class="com.yang.empl.security.LoginSuccessHandler"/>
 	<bean id="userDetailService" class="com.yang.empl.security.CustomUserDetailService"/>
 	<sec:http>
-		<sec:intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
-		<sec:intercept-url pattern="/user/**" access="hasAnyRole('MEMBER','ADMIN')"/>
-		<sec:intercept-url pattern="/**" access="permitAll"/>
+		<!-- <sec:intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
+		<sec:intercept-url pattern="/user/**" access="hasAnyRole('MEMBER','ADMIN')"/> -->
+		<sec:intercept-url pattern="/**" access="hasRole('MEMBER')"/>
 		<sec:form-login login-page="/login/loginForm"
 		default-target-url="/"
 		authentication-success-handler-ref="loginSuccessHandler"
@@ -20,8 +20,8 @@
 	<sec:authentication-manager>
 		<sec:authentication-provider>
 			<sec:jdbc-user-service data-source-ref="dataSource" id="userService"
-			users-by-username-query="SELECT USERID AS userid,USERPASSWORD AS userPassword,ENABLED FROM USERINFO WHERE USERID=?"
-			authorities-by-username-query="SELECT USERID AS loginId,AUTHORITY FROM AUTHORITIES WHERE USERID=?"/>
+			users-by-username-query="SELECT USERID AS userName,USERPASSWORD AS password,ENABLED FROM USERINFO WHERE USERID=?"
+			authorities-by-username-query="SELECT USERID AS userName,AUTHORITY FROM AUTHORITIES WHERE USERID=?"/>
 		</sec:authentication-provider>
 	</sec:authentication-manager>
 </beans>
